@@ -1,0 +1,215 @@
+<!doctype html>
+<!--css form 관련 공부 코드 기록-->
+<html lang="ko">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+    <!-- 같이 두어도 매번 변경될 때마다 변경됨 -->
+    <meta http-equiv="Expire" content="0"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="keyword" content="Web, html, 웹 표준"/>
+    <meta name="description" content="HTML meta tag page"/>
+    <meta name="author" content="TCPSchool"/>
+    <meta name="Date" content="2016-02-15T07:45:37+09:00" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="/Users/yejinkim/Desktop/heyazoo1007/frontend/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/Users/yejinkim/Desktop/heyazoo1007/frontend/css/custom/practice_template.css"/>
+
+    <title>practicing form</title>
+  </head>
+  
+  <body class="p-3 m-3 border-0 bd-example m-0 border-0">
+
+    <h1>Overview</h1>
+    
+    <!--이메일, 비밀번호 제출 폼 만들기-->
+    <form>
+        <legend>Email-form</legend>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input type="password" class="form-control" id="exampleInputPassword1">
+        </div>
+        <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+          <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <br>
+    <br>
+    <br>
+
+  <!--폼 비활성화 하기-->
+    <form>
+      <fieldset disabled>
+        <legend>DIsabled fieldset example</legend>
+        <div class="mb-3">
+          <label class="form-label" for="disableTextInput">Disabled input</label>
+          <input class="form-control" id="disabledInput" type="text" placeholder="Disabled input">
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="disabledSelect">Disabled select menu</label>
+          <select class="form-select" id="disabledSelect" >
+            <option>this is disabled select</option>
+          </select>
+        </div>
+        <div class="mb-3 form-check">
+          <input class="form-check-input" id="disabledFieldsetCheck" type="checkbox" disabled>
+          <label class="form-check-label" for="disabledFieldsetCheck">Can't check this</label>
+        </div>
+        <button class="btn btn-success" type="submit" >Submit</button>
+      </fieldset>
+    </form>
+    <br>
+    <br>
+
+    <h1>Form controls</h1>
+    <br>
+    <br>
+    <h3>1. Email-form</h3>
+    <div class="mb-3">
+        <label class="form-label" for="exampleFormControlInput1" >Email address</label>
+        <input class="form-control" id="exampleFormControlInput1" type="email" placeholder="name@example.com">
+    </div>
+    <div class="mb-3">
+        <label class="form-label" for="exampleFormControlTextarea1">Example textarea</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    </div>
+
+    <legend>Control size using '.form-control-*'</legend>
+    <input class="form-control form-control-lg" type="text" placeholder=".form-control-lg" aria-label=".form-control-lg example">
+    <input class="form-control" type="text" placeholder="Default input" aria-label="default input example">
+    <input class="form-control form-control-sm" type="text" placeholder=".form-control-sm" aria-label=".form-control-sm example">
+    <br>
+    <br>
+
+    <h3>2-1. Form text for 'block-level' or 'inline-level'</h3>
+    <label for="inputPassword5" class="form-label">Password</label>
+    <input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock">
+    <div id="passwordHelpBlock" class="form-text">
+      extra requirements for password
+    </div>
+    <br>
+    <br>
+
+    <h3>2-2. span 이용하기</h3>
+    <div class="row g-3 align-items-center">
+        <div class="col-auto">
+          <label class="col-form-label" for="inputPassword6" >Password</label>
+        </div>
+        <div class="col-auto">
+          <input class="form-control" id="inputPassword6" type="password" aria-describedby="passwordHelpInline">
+        </div>
+        <div class="col-auto">
+          <span class="form-text" id="passwordHelpInline">
+            Must be 8-20 characters long.
+          </span>
+        </div>
+    </div>
+    <br>
+    <br>
+
+    <h3>3. Disabled</h3>
+    <input class="form-control" type="text" placeholder="Disabled input 여기에 내용 담김" aria-label="Disabled input example" disabled>
+    <input class="form-control" type="text" value="Disabled readonly input 여기에 내용 담김" aria-label="Disabled input example" disabled readonly> 
+    <br>
+
+    <h3>4. ReadOnly</h3>
+    <input class="form-control" type="text" value="Readonly input here 여기에 내용 담김" aria-label="readonly input example" readonly=""> 
+    <br>
+
+    <div class="mb-3 row">
+        <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-10">
+          <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+        <div class="col-sm-10">
+          <input type="password" class="form-control" id="inputPassword">
+        </div>
+    </div>
+    <br>
+    <br>
+
+
+    <h3>5. select file</h3>
+    <div class="mb-3">
+        <label for="formFile" class="form-label">Default file input example</label>
+        <input class="form-control" type="file" id="formFile">
+    </div>
+    <div class="mb-3">
+        <label for="formFileMultiple" class="form-label">Multiple files input example</label>
+        <input class="form-control" type="file" id="formFileMultiple" multiple>
+    </div>
+    <div class="mb-3">
+        <label for="formFileDisabled" class="form-label">Disabled file input example</label>
+        <input class="form-control" type="file" id="formFileDisabled" disabled>
+    </div>
+    <div class="mb-3">
+        <label for="formFileSm" class="form-label">Small file input example</label>
+        <input class="form-control form-control-sm" id="formFileSm" type="file">
+    </div>
+    <div>
+        <label for="formFileLg" class="form-label">Large file input example</label>
+        <input class="form-control form-control-lg" id="formFileLg" type="file">
+    </div>
+    <br>
+    <br>
+    
+    <h3>6. Color</h3>
+    <label for="exampleColorInput" class="form-label">Color picker</label>
+    <input type="color" class="form-control form-control-color" id="exapleColorInput" value="#563d7c" title="Choose your color">
+
+
+    <h1>Select</h1>
+    <br>
+    <br>
+
+    <h3>1. Default</h3>
+    <select class="form-select form-select-lg mb-3" aria-label="Default select example">
+        <option selected>Open this select menu</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+    </select>
+
+    <select class="form-select form-select-sm" aria-label="Default select example">
+        <option selected>Open this select menu</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+    </select>
+    <br>
+
+    <h3>2. Multiple </h3>
+    <select class="form-select" multiple aria-label="Multiple select example">
+        <option selected>Open this select menu</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+    </select>
+    <br>
+
+    <h3>3. Select diabled</h3>
+    <select class="form-select form-select-sm" aria-label="Default select example" disabled>
+        <option selected>Open this select menu</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+    </select>
+
+
+  </body>
