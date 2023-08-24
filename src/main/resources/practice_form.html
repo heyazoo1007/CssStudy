@@ -1,5 +1,5 @@
 <!doctype html>
-<!--css form 관련 공부 코드 기록-->
+<!--부트스트랩 form 직접 사용해보면서 연습-->
 <html lang="ko">
   <head>
     <!-- Required meta tags -->
@@ -113,7 +113,7 @@
         </div>
         <div class="col-auto">
           <span class="form-text" id="passwordHelpInline">
-            Must be 8-20 characters long.
+            Must be 8-20 characters long.Must be 8-20 characters long.Must be 8-20 characters long.Must be 8-20 characters long.Must be 8-20 characters long.Must be 8-20 characters long.Must be 8-20 characters long.Must be 8-20 characters long.Must be 8-20 characters long.Must be 8-20 characters long.Must be 8-20 characters long.Must be 8-20 characters long.
           </span>
         </div>
     </div>
@@ -174,8 +174,9 @@
     <input type="color" class="form-control form-control-color" id="exapleColorInput" value="#563d7c" title="Choose your color">
 
 
-    <h1>Select</h1>
     <br>
+    <br>
+    <h1>Select</h1>
     <br>
 
     <h3>1. Default</h3>
@@ -211,5 +212,102 @@
         <option value="3">Three</option>
     </select>
 
+    <br>
+    <br>
+
+    <h1>Checks & Radios</h1>
+    <br>
+
+    <h3>Checks</h3>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="flexCheckDefault">
+        <label class="form-check-label" for="flexCheckDefault">
+            default checkbox
+        </label>
+    </div>
+
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="123" checked>
+        <label class="form-check-label" for="flexCheckDefault">
+            default checked checkbox
+        </label>
+    </div>
+
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="123" disabled>
+        <label class="form-check-label" for="flexCheckDefault">
+            disabled checkbox
+        </label>
+    </div>
+    
+    <h3>Radios</h3>
+    <div class="form-check">
+        <input class="form-check-input" type="radio"  id="flexRadioDefault1">
+        <label class="form-check-label" for="flexRadioDefault1">
+            Default Radio
+        </label>
+    </div>
+
+    <div class="form-check">
+        <input class="form-check-input" type="radio" id="flexRadioDefault1" checked>
+        <label class="form-check-label" for="flexRadioDefault1">
+            Default Checked Radio
+        </label>
+    </div>
+    <br>
+
+    <h3>Inline - checkbox</h3>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+        <label class="form-check-label" for="inlineCheckbox1">1</label>
+    </div>
+
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+        <label class="form-check-label" for="inlineCheckbox2">2</label>
+    </div>
+
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" disabled>
+        <label class="form-check-label" for="inlineCheckbox3">3 (disabled)</label>
+    </div>
+
+    <br>
+
+    <h3>Inline - radio</h3>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+        <label class="form-check-label" for="inlineRadio1">1</label>
+    </div>
+
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+        <label class="form-check-label" for="inlineRadio2">2</label>
+    </div>
+
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3" disabled>
+        <label class="form-check-label" for="inlineRadio3">3</label>
+    </div>
+
+    <br>
+    <br>
+    <br>
+
+    <h1>Outlined style</h1>
+    <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="address-level1">
+    <label class="btn btn-outline-primary" for="btn-check-outlined">Single toggle</label>
+
+    <input type="checkbox" class="btn-check" id="btn-check-2-outlined" checked autocomplete="off">
+    <label class="btn btn-outline-primary" for="btn-check-outlined">Checked</label>
+
+    <br>
+    <br>
+    
+    <input type="radio" class="btn-check" name="options-outlined" id="success-outlined" autocomplete="off" checked>
+    <label class="btn btn-outline-success" for="success-outlined">Checked success radio</label>
+
+    <input type="radio" class="btn-check" name="options-outlined" id="danger-outlined" autocomplete="off">
+    <label class="btn btn-outline-danger" for="danger-outlined">Danger radio</label>
 
   </body>
