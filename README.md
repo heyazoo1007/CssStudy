@@ -1005,7 +1005,7 @@ width는 12의 배수
 
 <details>
 <summary> 4-1. Reboot </summary>
-  <div markdown="1">
+  <div>
     Reboot는 `단일 파일에 있는 요소별 css 변경 모음`을 의미하고, Bootstrap을 초기에 빌드하는 우아하고 일관되며 간단한 기준선을 제공합니다. 
 
 > 몇몇 요소들의 margin-top이 제거되거나, 기본 폰트가 변경되는 등 **요소들의 기본 설정 값이 변경된 내용**을 설명하고 있습니다.
@@ -1013,7 +1013,7 @@ width는 12의 배수
 
 ### 제목
 
-제목크기는 <h1>-<h6> 요소로 설정할 수 있으며, 구체적인 특징은 다음과 같습니다.
+제목크기는 `<h1>-<h6>` 요소로 설정할 수 있으며, 구체적인 특징은 다음과 같습니다.
 
 margin-top : removed
 
@@ -1023,11 +1023,11 @@ line-height : tightened
 
 ### 문단
 
-모든 <p> 요소는 모두 `margin-top이 제거`되어있고, `margin-bottom은 1rem` 입니다. 
+모든 `<p>` 요소는 모두 `margin-top이 제거`되어있고, `margin-bottom은 1rem` 입니다. 
 
 ### 링크
 
-링크는 기본 색상과 underline이 적용됩니다. :hover일 때 링크는 변경되며, :visited일 때는 변경되지 않습니다.
+링크는 기본 색상과 underline이 적용됩니다. `:hover`일 때 링크는 변경되며, `:visited`일 때는 변경되지 않습니다.
 
 ### 목록
 
@@ -1037,7 +1037,7 @@ line-height : tightened
 
 ### 인라인 코드
 
-인라인 코드는 <code> 태그로 묶고, html 꺽쇠 괄호는 ‘<’로 작성하는 것이 아닌, `&lt;` 나 `&rt;` 로 표현해서 꺽쇠를 escape 해야합니다.
+인라인 코드는 `<code> 태그`로 묶고, html 꺽쇠 괄호는 `‘<’`로 작성하는 것이 아닌, `&lt;` 나 `&rt;` 로 표현해서 꺽쇠를 escape 해야합니다.
 
 ```html
 For example, <code>&lt;section&gt;</code> should be wrapped as inline.
@@ -1047,24 +1047,17 @@ For example, <code>&lt;section&gt;</code> should be wrapped as inline.
 
 ### 코드 블록
 
-코드가 여러 줄일 때는 <pre></pre> 태그를 사용합니다. 
+코드가 여러 줄일 때는 `<pre></pre> 태그`를 사용합니다. 
 
 올바른 렌더링을 위해 `꺽쇠 괄호를 이스케이프`를 잊으면 안됩니다.
 
-<pre> 요소는 margin-top을 제거하고 margin-bottom에 rem 단위를 사용하도록 재설정 됩니다.
+`<pre>` 요소는 margin-top을 제거하고 margin-bottom에 rem 단위를 사용하도록 재설정 됩니다.
   </div>
 </details>
 
 <details>
 <summary> 4-2. Typography </summary>
-  <div markdown="1">
-		
-  </div>
-</details>
-
-<details>
-<summary> 4-2. Typography </summary>
-  <div markdown="1">
+  <div>
     ### 전역 설정
 
 - 각 os 및 기기에 가장 적합한 기본 글꼴 스택을 사용합니다
@@ -1123,16 +1116,13 @@ With faded secondary text에 적용
 
 .lead 클래스를 활용해 단락을 눈에 띄게 만들 수 있습니다
 
-- .lead 적용 (크기가 좀 더 커진 것을 확인할 수 있습니다)
-      
+- .lead 적용 (크기가 좀 더 커진 것을 확인할 수 있습니다) 
 
-- .lead 미적용
+- .lead 미적용  
 
-	    
 ### 인라인 텍스트 요소
 
 하이라이트, 글 지우기, 밑줄, 볼드 등 다양하게 텍스트를 스타일링 할 수 있습니다
-
 
 ```html
 <p>You can use the mark tag to <mark>highlight</mark> text.</p>
@@ -1150,8 +1140,8 @@ With faded secondary text에 적용
 
 - <mark>, .mark : 참조 또는 표기 목적으로 표시, 강조된 텍스트
 - <small>, .small : 부가적인 댓글과 작은 텍스트
-- <s>, .text-decoration-line-through : 더이상 관련이 없거나 더이상 정확하지 않은 요소
-- <u>, .text-decoration-underline : 텍스트가 아닌 주석이 있음을 나타내는 방식, 렌더링 되어야 하는 인라인 텍스트 범위를 나타냄
+- `<s>`, .text-decoration-line-through : 더이상 관련이 없거나 더이상 정확하지 않은 요소
+- `<u>`, .text-decoration-underline : 텍스트가 아닌 주석이 있음을 나타내는 방식, 렌더링 되어야 하는 인라인 텍스트 범위를 나타냄
 
 ### 인용문
 
@@ -1186,7 +1176,6 @@ With faded secondary text에 적용
 - 말 줄임표
 - `.text-truncate 클래스`를 추가해 말 줄임표를 사용할 수 있습니다.
     
-  
     ```html
     <dl class="row">
     	<dt class="col-sm-3 text-truncate">Truncated term is truncated</dt>
@@ -1199,7 +1188,7 @@ With faded secondary text에 적용
 <details>
 <summary> 4-3. Image </summary>
   <div markdown="1">
-	  ### 이미지
+###이미지
 
 - 반응형 이미지
 
@@ -1236,156 +1225,6 @@ Bootstrap의 이미지는 `.img-fluid`를 통해 반응형으로 만들어집니
   <img src="..." class="img-fluid img-thumbnail" alt="...">
 </picture>
 ```
-	  
-  </div>
-<details>
-<summary> 4-4. Table </summary>
-  <div markdown="1">
-	  `테이블의 opt-in 스타일`에 대한 문서와 예시에 대한 설명입니다.
-
-<table>에 .table을 넣으면 우리의 선택 수정자 클래스 또는 커스텀 스타일로 확장할 수 있습니다. 
-
-### 개요
-
-Bootstrap에서 .table 기반 테이블을 표현하는 방법입니다. 
-
-- 코드
-    
-    ```html
-    <table class="table">
-    
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">First</th>
-          <th scope="col">Last</th>
-          <th scope="col">Handle</th>
-        </tr>
-      </thead>
-    
-      <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-    
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-    
-        <tr>
-          <th scope="row">3</th>
-          <td colspan="2">Larry the Bird</td>
-          <td>@twitter</td>
-        </tr>
-      </tbody>
-    
-    </table>
-    ```
-    
-
-### 테이블 강조
-
-`.table-striped`를 사용해 <tbody> 내의 테이블 행에 줄무늬를 추가합니다.
-
-```html
-<table class="table table-striped"> ... </table>
-
-<table class="table table-columns"> ... </table>
-
-// 테이블 색상(dark), 테이블 줄무늬 패턴 추가
-<table class="table table-dark table-striped"> ... </table>
-<table class="table table-dark table-striped-columns"> ... </table>
-
-// 테이블 색상(dark), 테이블 줄무늬 패턴 추가
-<table class="table table-success table-striped"> ... </table>
-<table class="table table-success table-striped-columns"> ... </table>
-```
-
-### hover를 할 수 있는 행
-
-`.table-hover`를 추가해 <tbody> 내의 `테이블 행에 마우스 오버 상태를 활성화`합니다.
-
-```html
-<table class="table table-hover"></table>
-<table class="table table-dark table-hover"></table>
-<table class="table table-striped table-hover"></table>
-```
-
-### 활성화 테이블
-
-`.table-active 클래스`를 추가해 테이블 행 또는 셀을 강조 표시합니다. 
-
-### 테이블 테두리
-
-- 테두리가 있는 테이블
-    
-    셀의 모든 면에 테두리가 있는 테이블을 만들려면 .table-border를 추가하면 됩니다.
-    
-    ```html
-    <table class="table table-bordered"> ... </table>
-    
-    // 색상 변경
-    <table class="table table-bordered border-primary"> ... </table>
-    ```
-    
-- 테두리가 없는 테이블
-    
-    ```html
-    <table class="table table-borderless"> ... </table>
-    
-    // 색상 변경
-    <table class="table table-dark table-borderless"> ... </table>
-    ```
-    
-- 얇은 테이블
-    
-    .table-sm을 추가해 모든 셀의 padding을 반으로 잘라 .table을 더 간결하게 만듭니다. 
-    
-    ```html
-    // 기본 버전 
-    <table class="table table-sm"> ... </table>
-    
-    // dark 버전
-    <table class="table table-dark table-sm"> ... </table>
-    ```
-    
-
-### 테이블 그룹 나누기
-
-<thead>, <tbody> 또는 <tfoot>에 `.table-group-divider 클래스`를 추가하면 됩니다.
-
-### 테이블 이름
-
-`<caption>`은 테이블 이름과 같은 기능을 합니다. 테이블에 이름을 설정하면, 스크린 리더를 사용하는 사용자가 테이블을 찾고 그 내용을 이해하고 읽을 것인지 결정할 수 있도록 도와줍니다. 
-	
-
-```html
-<table class="table table-sm">
-  <caption>List of users</caption>
-  <thead>
-    ...
-  </thead>
-  <tbody>
-    ...
-  </tbody>
-</table>
-
-<!--테이블 이름을 상단에 올리기-->
-<table class="table caption-top"> 
-```
-
-### 반응형 테이블
-
-.table-responsive 클래스로 반응형 테이블을 만들면 테이블을 쉽게 가로로 스크롤할 수 있습니다. breakpoint에 따라 반응형 테이블을 설정할 수 있습니다. (`.table-responsive{-sm|-md|-lg|-xl|-xxl}`)
-
-- `overflow-y: hidden`을 사용하면 테이블의 하단 또는 상단 가장자리를 벗어나는 콘텐츠를 잘라냅니다. 특히 드롭다운 메뉴 및 기타 서드 파티 위젯을 잘라낼 수 있습니다.
-		
   </div>
 </details>
 
