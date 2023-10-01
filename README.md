@@ -1058,19 +1058,19 @@ For example, <code>&lt;section&gt;</code> should be wrapped as inline.
 <details>
 <summary> 4-2. Typography </summary>
   <div>
-    ### 전역 설정
+   ### 전역 설정
 
 - 각 os 및 기기에 가장 적합한 기본 글꼴 스택을 사용합니다
 - 일반적으로 `16px`의 기본 글꼴 크기를 제공하고, 브라우저 기본값은 사용자가 지정 가능합니다
-- <body>에 적용된 타이포그래피는 `$font-family-base`, `$font-size-base`, `$line-height-base` 속성을 사용합니다
+- `<body>`에 적용된 타이포그래피는 `$font-family-base`, `$font-size-base`, `$line-height-base` 속성을 사용합니다
 - `$link-color`를 통해 글로벌 링크 색상을 설정합니다
-- `$body-bg`를 사용해 <body>에 background-color를 설정합니다
+- `$body-bg`를 사용해 `<body>`에 background-color를 설정합니다
 
 ### 제목
 
-- <h1>~<h6>
+- `<h1>~<h6>`
     
-    <h1>~<h6>을 사용해 제목 크기를 지정할 수 있습니다. 
+    `<h1>~<h6>`을 사용해 제목 크기를 지정할 수 있습니다. 
     
     만약 제목의 글꼴 스타일과 일치시키고 싶지만 관련 html 요소를 사용할 수 없는 경우 .h1부터 .h6 클래스도 사용할 수 있습니다. 
     
@@ -1116,9 +1116,10 @@ With faded secondary text에 적용
 
 .lead 클래스를 활용해 단락을 눈에 띄게 만들 수 있습니다
 
-- .lead 적용 (크기가 좀 더 커진 것을 확인할 수 있습니다) 
+- .lead 적용 (크기가 좀 더 커진 것을 확인할 수 있습니다)
 
-- .lead 미적용  
+- .lead 미적용
+     
 
 ### 인라인 텍스트 요소
 
@@ -1138,8 +1139,8 @@ With faded secondary text에 적용
 <p><em>This line rendered as italicized text.</em></p>
 ```
 
-- <mark>, .mark : 참조 또는 표기 목적으로 표시, 강조된 텍스트
-- <small>, .small : 부가적인 댓글과 작은 텍스트
+- `<mark>`, .mark : 참조 또는 표기 목적으로 표시, 강조된 텍스트
+- `<small>`, .small : 부가적인 댓글과 작은 텍스트
 - `<s>`, .text-decoration-line-through : 더이상 관련이 없거나 더이상 정확하지 않은 요소
 - `<u>`, .text-decoration-underline : 텍스트가 아닌 주석이 있음을 나타내는 방식, 렌더링 되어야 하는 인라인 텍스트 범위를 나타냄
 
@@ -1149,7 +1150,7 @@ With faded secondary text에 적용
 
 - 인용 출처
     
-    인용에 대한 출처는 <blockquote>를 `<figure>`로 감싸고, <figure> 내에 `<figcaption>` 또는 `.blockquote-footer 클래스`를 통해 표현할 수 있습니다.
+    인용에 대한 출처는 `<blockquote>`를 `<figure>`로 감싸고, <figure> 내에 `<figcaption>` 또는 `.blockquote-footer 클래스`를 통해 표현할 수 있습니다.
     
     ```html
     <figure>
@@ -1168,7 +1169,7 @@ With faded secondary text에 적용
     
 - 인용구 정렬
     
-    인용구를 정렬하려면 <figure> 태그에 `.text-*` 를 적용합니다. `center`, `end` 등을 설정할 수 있습니다. 
+    인용구를 정렬하려면 `<figure>` 태그에 `.text-*` 를 적용합니다. `center`, `end` 등을 설정할 수 있습니다. 
     
 
 ### 목록
