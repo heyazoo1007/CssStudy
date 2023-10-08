@@ -1229,6 +1229,481 @@ Bootstrap의 이미지는 `.img-fluid`를 통해 반응형으로 만들어집니
   </div>
 </details>
 
+</br>
+</br>
+
+<h1>5. Forms</h1>
+
+<details>
+  <summary> 5-0. overview </summary>
+  <div>
+  `TODO`
+
+form-`control`, `label`이 무엇인지 공부하기
+
+- form-control
+    - input, select, textarea 등의 태그에서 스타일을 줄 수 있는 클래스
+- form-label
+    - label은 form 내부에서 해당 form의 조작을 담당하는 `태그의 이름표 역할`
+    
+    ```html
+    <!--<label>의 for에 <input> id를 추가하면 됨-->
+    <form>
+    <label for="타겟id">타겟에대한 정보</label>
+    <input id="타겟id" type="text">
+    </form>
+    ```
+    
+    - label 태그를 사용하는 `이유`
+        - self-closing 태그의 용도를 분명하게 보여줌 (input은 셀프 클로징 태그로 내부 텍스트가 없어서 용도를 표현하는 데 한계가 있음)
+        - label을 누르는 것만으로도 브라우저를 해당 form 조작에 집중시킬 수 있음
+        - id-for 연결
+
+- form email 만들기
+    
+    ```html
+    <form>
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Email address</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input type="password" class="form-control" id="exampleInputPassword1">
+      </div>
+      <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    ```
+    
+- form 비활성화 하기
+
+    ```html
+    <form>
+        <fieldset disabled>
+          <legend>DIsabled fieldset example</legend>
+          <div class="mb-3">
+            <label for="disableTextInput" class="form-label">Disabled input</label>
+            <input class="form-control" id="disabledInput" type="text" placeholder="Disabled input" disabled>
+          </div>
+          <div class="mb-3">
+            <label for="disabledSelect" class="form-label">Disabled select menu</label>
+            <select id="disabledSelect" class="form-select">
+              <option>this is disabled select</option>
+            </select>
+          </div>
+          <div class="mb-3 form-check">
+            <input class="form-check-input" id="disabledFieldsetCheck" type="checkbox" disabled>
+            <label class="form-check-label" for="disabledFieldsetCheck">Can't check this</label>
+          </div>
+          <button type="submit" class="btn btn-success">Submit</button>
+        </fieldset>
+    </form>
+    ```
+  </div>
+</details>
+
+<details>
+<summary> 5-1. form-control</summary>
+<div markdown="1">
+폼 컨트롤은 텍스트 형식의 폼 컨트롤러에 사용자 정의 스타일, 크기 조정, 포커스 상태 등의 업그레이드를 실시할 수 있습니다.
+
+type=”check”, “radio”, “number”, 
+
+`TODO`
+
+- input → number 일 때 숫자만 입력할 수 있게 하는 태그 있음
+    
+    input 박스에 숫자만 입력할 수 있게 설정하는 3가지 방법이 있습니다. 
+    
+    아래 내용은 해당 링크를 참고했습니다.
+    
+    1. `type=”number”` → 특정 브라우저 버전에서만 적용가능
+        
+        ```html
+        <input type="number"> 
+        ```
+        
+    2. `oninput` 이벤트, 정규식, replace() 함수 활용하기
+        
+        ‘`oninput’ 이벤트`는 input form의 값이 바뀌면 발생합니다. oninput 이벤트가 발생했을 때, `숫자만 입력할 수 있는 정규식`을 적용해 숫자가 아닌 다른 값이 입력되면 `replace()` 함수를 이용해 값을 대체하도록 했습니다. 
+        
+        ```html
+        <input type="text" 
+            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
+        ```
+        
+    3. `pattern = pattern="[0-9]+"` 활용하기 → 모든 브라우저 버전에 적용가능 (효율적)
+        
+        input에 `pattern 속성`을 지정하고, 입력한 값을 검증할 정규식을 입력했습니다. 위 pattern 속성에 지정된 정규식은 숫자만 입력받도록 하고 있습니다. 만약, 숫자가 아닌 다른 문자가 입력된다면, `‘submit’ 버튼 클릭 시 메시지`를 표시합니다.
+        
+        ```html
+        <form>
+          <input type="text" pattern="[0-9]+">
+          <input type='submit'>
+        </form>
+        ```
+        
+- value, placeholder 의 차이 찾아보기
+    
+    
+    ### 공통점
+    
+    input 태그에 value와 placeholder를 적용하면 input 박스 안에 `미리 원하는 문구`를 적어 놓을 수 있습니다. 
+    
+    ### 차이점
+    
+    - value : 실질적인 값
+        
+        input 태그의 초기값을 사용되고, 이를 바꾸고 싶다면 사용자가 직접 지우고 입력해야 합니다. 
+        
+        또한 form 태그를 활용해 `서버에 정보를 전송`할 수 있습니다. 만약 input 태그의 내용을 변경하지 않고, form 태그를 활성화 시키면, 초기의 value 값이 그대로 서버로 전송됩니다. 
+        
+    - placeholder : 눈에 보이지만 실질적이지 않은 값
+        
+        사용자가 글자를 입력할 때, 자동으로 미리 입력된 문구가 사라지고, placeholder 값은 서버로 전송되지 않습니다. 
+        
+    
+    code
+    
+    ```html
+    <body>
+        <form action="서버의 주소~~"> 
+            <input type="text" value="글자를 입력하세요">  // value를 적용했습니다. <br>  // 서버에 전송 되는 정보
+            <input type="text" placeholder="글자를 입력하세요."> // placeholder를 적용했습니다. 여기 값은 서버로 못 감
+        </form>
+    </body>
+    ```
+    
+
+### Sizing
+
+`.form-control-*{lg, sm} 클래스`를 이용해 input의 크기를 조절할 수 있습니다. 
+
+```html
+<input class="form-control form-control-lg" type="text" placeholder=".form-control-lg" aria-label=".form-control-lg example">
+<input class="form-control" type="text" placeholder="Default input" aria-label="default input example">
+<input class="form-control form-control-sm" type="text" placeholder=".form-control-sm" aria-label=".form-control-sm example">
+```
+
+### Form text
+
+form text는 input 칸 아래에 넣을 수 있는 텍스트로, `.form-text 클래스`를 이용해 설정할 수 있습니다. 
+
+사진에서 Password 칸 아래 “Your password~”가 `form text` 입니다.
+
+```html
+<label for="inputPassword5" class="form-label">Password</label>
+<input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock">
+<div id="passwordHelpBlock" class="form-text">
+  Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
+</div>
+```
+
+input 칸 옆에도 form text를 추가할 수 있습니다.
+
+```html
+<div class="row g-3 align-items-center">
+
+  <div class="col-auto">
+    <label for="inputPassword6" class="col-form-label">Password</label>
+  </div>
+
+  <div class="col-auto">
+    <input type="password" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+  </div>
+
+  <div class="col-auto">
+    <span id="passwordHelpInline" class="form-text">
+      Must be 8-20 characters long.
+    </span>
+  </div>
+
+</div>
+```
+
+### Disabled
+
+disabled는 포커스가 안되게하고, readonly는 수정만 안되게 함
+
+`<inpupt> 요소`에 `disabled 불리언 속성`을 추가하면 비활성화할 수 있습니다. 
+
+`disabled`만 하면 글씨까지 회색으로 변하지만, `disabled readonly`로 설정하면 글씨는 또렷하게 검정색으로 보입니다. 
+
+
+```html
+<input class="form-control" type="text" placeholder="Disabled input" aria-label="Disabled input example" disabled>
+<input class="form-control" type="text" value="Disabled readonly input" aria-label="Disabled input example" disabled readonly>
+```
+
+### Readonly
+
+`readonly 불리언 속성`을 이용하면 input value의 수정을 예방할 수 있습니다. 
+
+readonly input은 disabled와는 다르게 `focus`나 `selected`가 될 수 있습니다.
+
+```html
+<input class="form-control" type="text" value="Readonly input here..." aria-label="readonly input example" readonly>
+```
+
+- `readonly plain text`
+    
+    `.form-control-plaintext 클래스`를 적용하면 테두리 없는 readonly를 구현할 수 있습니다. (사진에서 `Email`의 `email@expale.com`에 `plaintext`가 적용됨을 확인할 수 있습니다)
+    
+    
+    ```html
+    <div class="mb-3 row">
+        <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-10">
+          <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com">
+        </div>
+    </div>
+    
+    <div class="mb-3 row">
+      <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+      <div class="col-sm-10">
+        <input type="password" class="form-control" id="inputPassword">
+      </div>
+    </div>
+    ```
+    
+
+### File input
+
+`.form-control 클래스`의 `type=”file”`을 설정해 파일을 불러오는 것도 구현할 수 있습니다. 
+
+```html
+<div class="mb-3">
+  <label for="formFile" class="form-label">Default file input example</label>
+  <input class="form-control" type="file" id="formFile">
+</div>
+
+<div class="mb-3">
+  <label for="formFileMultiple" class="form-label">Multiple files input example</label>
+  <input class="form-control" type="file" id="formFileMultiple" multiple>
+</div>
+
+<div class="mb-3">
+  <label for="formFileDisabled" class="form-label">Disabled file input example</label>
+  <input class="form-control" type="file" id="formFileDisabled" disabled>
+</div>
+
+<div class="mb-3">
+  <label for="formFileSm" class="form-label">Small file input example</label>
+  <input class="form-control form-control-sm" id="formFileSm" type="file">
+</div>
+
+<div>
+  <label for="formFileLg" class="form-label">Large file input example</label>
+  <input class="form-control form-control-lg" id="formFileLg" type="file">
+</div>
+```
+  </div>
+</details>
+
+<details>
+<summary> 5-2. select </summary>
+<div markdown="1">
+사용자 정의 css로 `<select>` 요소를 변경할 수 있습니다. 
+
+### 기본값 & 크기 조절
+
+`.form-select 클래스`를 사용해 사용자 정의의 `<select></select>`를 사용할 수 있습니다. 
+
+이 스타일은 브라우저 제한으로 `<select>`의 처음 외형만 변경할 수 있고, 그 안에 있는 `<option> 들의 스타일 변경은 불가능`합니다.
+
+</div>
+</details>
+
+<details>
+<summary> 5-3. checkbox & radio-box</summary>
+<div>
+`TODO`
+
+- 체크박스 인라인 여러개 해보기
+    
+    ![스크린샷 2023-08-28 오후 10.57.21.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/434ce23b-a37f-4283-aca5-d70ee357598c/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-08-28_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_10.57.21.png)
+    
+
+### 접근
+
+브라우저의 기본 체크 박스/라디오 버튼은 .form-check의 도움을 받아 대체할 수 있습니다. 
+
+기본적으로 체크 박스나 라디오 버튼은 `.form-check`를 이용해 수직으로 적절한 간격으로 쌓을 수 있습니다. 
+
+![스크린샷 2023-08-21 오후 11.28.28.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/65c6a809-a5a4-470c-b812-5c68a4e5b081/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-08-21_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_11.28.28.png)
+
+```html
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+  <label class="form-check-label" for="flexCheckDefault">
+    Default checkbox
+  </label>
+</div>
+
+<!--처음부터 체크된 상태로 설정하기(checked)-->
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+  <label class="form-check-label" for="flexCheckChecked">
+    Checked checkbox
+  </label>
+</div>
+```
+
+### 비활성화 - 체크박스
+
+`disabled 속성`을 추가하면 `<label>과 함께 관련된 입력 폼`이 흐릿한 비활성화 상태로 표시됩니다. 
+
+![스크린샷 2023-08-21 오후 11.30.16.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e78c32d6-1573-4a9e-815d-801fec46f606/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-08-21_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_11.30.16.png)
+
+```html
+<!--unchecked disabled-->
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="flexCheckDisabled" disabled>
+  <label class="form-check-label" for="flexCheckDisabled">
+    Disabled checkbox
+  </label>
+</div>
+
+<!--checked diabled-->
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="flexCheckCheckedDisabled" checked disabled>
+  <label class="form-check-label" for="flexCheckCheckedDisabled">
+    Disabled checked checkbox
+  </label>
+</div>
+```
+
+### 라디오 버튼
+
+기본적으로 체크 박스나 라디오 버튼은 `.form-check`를 이용해 수직으로 적절한 간격으로 쌓을 수 있습니다. 
+
+```html
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+  <label class="form-check-label" for="flexRadioDefault1">
+    Default radio
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+  <label class="form-check-label" for="flexRadioDefault2">
+    Default checked radio
+  </label>
+</div>
+```
+
+### 비활성화 - 라디오 버튼
+
+![스크린샷 2023-08-21 오후 11.31.09.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6a53493c-f3bc-451e-8e2f-26a8d9d5719f/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-08-21_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_11.31.09.png)
+
+```html
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="flexRadioDisabled" id="flexRadioDisabled" disabled>
+  <label class="form-check-label" for="flexRadioDisabled">
+    Disabled radio
+  </label>
+</div>
+
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="flexRadioDisabled" id="flexRadioCheckedDisabled" checked disabled>
+  <label class="form-check-label" for="flexRadioCheckedDisabled">
+    Disabled checked radio
+  </label>
+</div>
+```
+
+### 인라인
+
+`.form-check`에 `.form-check-inline 클래스`를 추가해 체크 박스나 라디오 버튼을 같은 수평 방향에 놓아 그룹화할 수 있습니다. 
+
+`<div class=”form-check form-check-inline”>`
+
+![스크린샷 2023-08-21 오후 11.35.26.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e724a929-a347-41b3-8bd1-41890c4e2483/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-08-21_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_11.35.26.png)
+
+```html
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+  <label class="form-check-label" for="inlineCheckbox1">1</label>
+</div>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+  <label class="form-check-label" for="inlineCheckbox2">2</label>
+</div>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" disabled>
+  <label class="form-check-label" for="inlineCheckbox3">3 (disabled)</label>
+</div>
+```
+
+- 라디오 버튼 인라인
+    
+    ![스크린샷 2023-08-21 오후 11.35.58.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c76b0a7a-e532-4afe-ba74-8278aa71fd94/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-08-21_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_11.35.58.png)
+    
+    ```html
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+      <label class="form-check-label" for="inlineRadio1">1</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+      <label class="form-check-label" for="inlineRadio2">2</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3" disabled>
+      <label class="form-check-label" for="inlineRadio3">3 (disabled)</label>
+    </div>
+    ```
+    
+
+### 버튼 토글
+
+체크 박스나 라디오 버튼을 버튼처럼 만들고 싶다면 <label> 요소에 .form-check-label이 아닌 .btn 스타일을 사용하면 됩니다. 이러한 토글 버튼은 다시 button group으로 그룹화할 수 있습니다. 
+
+→ 라벨을 체크박스 형식으로 만듦
+
+![스크린샷 2023-08-21 오후 11.41.56.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e5dec857-06f3-4e9b-97ed-13f83c7030f1/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-08-21_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_11.41.56.png)
+
+```html
+<input type="checkbox" class="btn-check" id="btn-check" autocomplete="off">
+<label class="btn btn-primary" for="btn-check">Single toggle</label>
+
+<input type="checkbox" class="btn-check" id="btn-check-2" checked autocomplete="off">
+<label class="btn btn-primary" for="btn-check-2">Checked</label>
+
+<input type="checkbox" class="btn-check" id="btn-check-3" autocomplete="off" disabled>
+<label class="btn btn-primary" for="btn-check-3">Disabled</label>
+```
+
+### .btn 테두리 스타일
+
+다양한 종류의 .btn이 지원되고 있습니다. 
+
+type은 checkbox 나 radio 이더라도 `.btn-check`로 설정하면 `버튼처럼` 표현할 수 있습니다. 
+
+![스크린샷 2023-08-23 오전 11.42.46.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/bbf90ea0-c82f-4b87-b757-f0e8c3d627fc/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-08-23_%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB_11.42.46.png)
+
+```html
+<input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">
+<label class="btn btn-outline-primary" for="btn-check-outlined">Single toggle</label><br>
+
+<input type="checkbox" class="btn-check" id="btn-check-2-outlined" checked autocomplete="off">
+<label class="btn btn-outline-secondary" for="btn-check-2-outlined">Checked</label><br>
+
+<input type="radio" class="btn-check" name="options-outlined" id="success-outlined" autocomplete="off" checked>
+<label class="btn btn-outline-success" for="success-outlined">Checked success radio</label>
+
+<input type="radio" class="btn-check" name="options-outlined" id="danger-outlined" autocomplete="off">
+<label class="btn btn-outline-danger" for="danger-outlined">Danger radio</label>
+```
+</div>
+</details>
+
+
 
 
 
