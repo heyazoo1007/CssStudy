@@ -1232,12 +1232,12 @@ Bootstrap의 이미지는 `.img-fluid`를 통해 반응형으로 만들어집니
 </br>
 </br>
 
-<h1>5. Forms</h1>
+<h3>5. Forms</h3>
 
 <details>
   <summary> 5-0. overview </summary>
   <div>
-  `TODO`
+      `TODO`
 
 form-`control`, `label`이 무엇인지 공부하기
 
@@ -1245,75 +1245,74 @@ form-`control`, `label`이 무엇인지 공부하기
     - input, select, textarea 등의 태그에서 스타일을 줄 수 있는 클래스
 - form-label
     - label은 form 내부에서 해당 form의 조작을 담당하는 `태그의 이름표 역할`
-    
-    ```html
-    <!--<label>의 for에 <input> id를 추가하면 됨-->
-    <form>
-    <label for="타겟id">타겟에대한 정보</label>
-    <input id="타겟id" type="text">
-    </form>
-    ```
-    
-    - label 태그를 사용하는 `이유`
-        - self-closing 태그의 용도를 분명하게 보여줌 (input은 셀프 클로징 태그로 내부 텍스트가 없어서 용도를 표현하는 데 한계가 있음)
-        - label을 누르는 것만으로도 브라우저를 해당 form 조작에 집중시킬 수 있음
-        - id-for 연결
+     - 
+
+```html
+<!--<label>의 for에 <input> id를 추가하면 됨-->
+<form>
+<label for="타겟id">타겟에대한 정보</label>
+<input id="타겟id" type="text">
+</form>
+```
+
+- label 태그를 사용하는 `이유`
+    - self-closing 태그의 용도를 분명하게 보여줌 (input은 셀프 클로징 태그로 내부 텍스트가 없어서 용도를 표현하는 데 한계가 있음)
+    - label을 누르는 것만으로도 브라우저를 해당 form 조작에 집중시킬 수 있음
+    - id-for 연결
 
 - form email 만들기
-    
-    ```html
-    <form>
+
+```html
+<form>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1">
+  </div>
+  <div class="mb-3 form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+```
+
+- form 비활성화 하기
+```html
+<form>
+    <fieldset disabled>
+      <legend>DIsabled fieldset example</legend>
       <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Email address</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        <label for="disableTextInput" class="form-label">Disabled input</label>
+        <input class="form-control" id="disabledInput" type="text" placeholder="Disabled input" disabled>
       </div>
       <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1">
+        <label for="disabledSelect" class="form-label">Disabled select menu</label>
+        <select id="disabledSelect" class="form-select">
+          <option>this is disabled select</option>
+        </select>
       </div>
       <div class="mb-3 form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        <input class="form-check-input" id="disabledFieldsetCheck" type="checkbox" disabled>
+        <label class="form-check-label" for="disabledFieldsetCheck">Can't check this</label>
       </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-    ```
-    
-- form 비활성화 하기
-
-    ```html
-    <form>
-        <fieldset disabled>
-          <legend>DIsabled fieldset example</legend>
-          <div class="mb-3">
-            <label for="disableTextInput" class="form-label">Disabled input</label>
-            <input class="form-control" id="disabledInput" type="text" placeholder="Disabled input" disabled>
-          </div>
-          <div class="mb-3">
-            <label for="disabledSelect" class="form-label">Disabled select menu</label>
-            <select id="disabledSelect" class="form-select">
-              <option>this is disabled select</option>
-            </select>
-          </div>
-          <div class="mb-3 form-check">
-            <input class="form-check-input" id="disabledFieldsetCheck" type="checkbox" disabled>
-            <label class="form-check-label" for="disabledFieldsetCheck">Can't check this</label>
-          </div>
-          <button type="submit" class="btn btn-success">Submit</button>
-        </fieldset>
-    </form>
-    ```
+      <button type="submit" class="btn btn-success">Submit</button>
+    </fieldset>
+</form>
+```
   </div>
 </details>
 
 <details>
-<summary> 5-1. form-control</summary>
-<div markdown="1">
-폼 컨트롤은 텍스트 형식의 폼 컨트롤러에 사용자 정의 스타일, 크기 조정, 포커스 상태 등의 업그레이드를 실시할 수 있습니다.
+  <summary> 5-1. form-control</summary>
+  <div>
+  폼 컨트롤은 `텍스트 형식`의 `폼 컨트롤러(<input>, <textarea>)`에 사용자 정의 스타일, 크기 조정, 포커스 상태 등의 업그레이드를 실시할 수 있습니다.
 
-type=”check”, “radio”, “number”, 
-
+type=”check”, “radio”, “number”,
 `TODO`
 
 - input → number 일 때 숫자만 입력할 수 있게 하는 태그 있음
@@ -1330,7 +1329,7 @@ type=”check”, “radio”, “number”,
         
     2. `oninput` 이벤트, 정규식, replace() 함수 활용하기
         
-        ‘`oninput’ 이벤트`는 input form의 값이 바뀌면 발생합니다. oninput 이벤트가 발생했을 때, `숫자만 입력할 수 있는 정규식`을 적용해 숫자가 아닌 다른 값이 입력되면 `replace()` 함수를 이용해 값을 대체하도록 했습니다. 
+        ‘`oninput’ 이벤트`는 input form의 값이 바뀌면 발생합니다. `oninput` 이벤트가 발생했을 때, `숫자만 입력할 수 있는 정규식`을 적용해 숫자가 아닌 다른 값이 입력되면 `replace()` 함수를 이용해 값을 대체하도록 했습니다. 
         
         ```html
         <input type="text" 
@@ -1382,8 +1381,7 @@ type=”check”, “radio”, “number”,
 
 ### Sizing
 
-`.form-control-*{lg, sm} 클래스`를 이용해 input의 크기를 조절할 수 있습니다. 
-
+`.form-control-*{lg, sm} 클래스`를 이용해 input의 크기를 조절할 수 있습니다.
 ```html
 <input class="form-control form-control-lg" type="text" placeholder=".form-control-lg" aria-label=".form-control-lg example">
 <input class="form-control" type="text" placeholder="Default input" aria-label="default input example">
@@ -1392,8 +1390,7 @@ type=”check”, “radio”, “number”,
 
 ### Form text
 
-form text는 input 칸 아래에 넣을 수 있는 텍스트로, `.form-text 클래스`를 이용해 설정할 수 있습니다. 
-
+form text는 input 칸 아래에 넣을 수 있는 텍스트로, `.form-text 클래스`를 이용해 설정할 수 있습니다.
 사진에서 Password 칸 아래 “Your password~”가 `form text` 입니다.
 
 ```html
@@ -1404,36 +1401,13 @@ form text는 input 칸 아래에 넣을 수 있는 텍스트로, `.form-text 클
 </div>
 ```
 
-input 칸 옆에도 form text를 추가할 수 있습니다.
-
-```html
-<div class="row g-3 align-items-center">
-
-  <div class="col-auto">
-    <label for="inputPassword6" class="col-form-label">Password</label>
-  </div>
-
-  <div class="col-auto">
-    <input type="password" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
-  </div>
-
-  <div class="col-auto">
-    <span id="passwordHelpInline" class="form-text">
-      Must be 8-20 characters long.
-    </span>
-  </div>
-
-</div>
-```
-
 ### Disabled
 
 disabled는 포커스가 안되게하고, readonly는 수정만 안되게 함
 
 `<inpupt> 요소`에 `disabled 불리언 속성`을 추가하면 비활성화할 수 있습니다. 
 
-`disabled`만 하면 글씨까지 회색으로 변하지만, `disabled readonly`로 설정하면 글씨는 또렷하게 검정색으로 보입니다. 
-
+`disabled`만 하면 글씨까지 회색으로 변하지만, `disabled readonly`로 설정하면 글씨는 또렷하게 검정색으로 보입니다.
 
 ```html
 <input class="form-control" type="text" placeholder="Disabled input" aria-label="Disabled input example" disabled>
@@ -1445,36 +1419,30 @@ disabled는 포커스가 안되게하고, readonly는 수정만 안되게 함
 `readonly 불리언 속성`을 이용하면 input value의 수정을 예방할 수 있습니다. 
 
 readonly input은 disabled와는 다르게 `focus`나 `selected`가 될 수 있습니다.
+- readonly plain text
+    
+    `.form-control-plaintext 클래스`를 적용하면 테두리 없는 readonly를 구현할 수 있습니다. (사진에서 `Email`의 `email@expale.com`에 plaintext가 적용됨을 확인할 수 있습니다)
 
 ```html
-<input class="form-control" type="text" value="Readonly input here..." aria-label="readonly input example" readonly>
+<div class="mb-3 row">
+    <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+    <div class="col-sm-10">
+      <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com">
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+    <div class="col-sm-10">
+      <input type="password" class="form-control" id="inputPassword">
+    </div>
+  </div>
 ```
 
-- `readonly plain text`
-    
-    `.form-control-plaintext 클래스`를 적용하면 테두리 없는 readonly를 구현할 수 있습니다. (사진에서 `Email`의 `email@expale.com`에 `plaintext`가 적용됨을 확인할 수 있습니다)
-    
-    
-    ```html
-    <div class="mb-3 row">
-        <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
-        <div class="col-sm-10">
-          <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com">
-        </div>
-    </div>
-    
-    <div class="mb-3 row">
-      <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-      <div class="col-sm-10">
-        <input type="password" class="form-control" id="inputPassword">
-      </div>
-    </div>
-    ```
-    
 
 ### File input
 
-`.form-control 클래스`의 `type=”file”`을 설정해 파일을 불러오는 것도 구현할 수 있습니다. 
+`.form-control 클래스`의 `type=”file”`을 설정해 파일을 불러오는 것도 구현할 수 있습니다.
 
 ```html
 <div class="mb-3">
@@ -1502,31 +1470,89 @@ readonly input은 disabled와는 다르게 `focus`나 `selected`가 될 수 있�
   <input class="form-control form-control-lg" id="formFileLg" type="file">
 </div>
 ```
+
+### Datalists
+
+Datalist는 `<options>` 그룹을 생성해 `<input>`에 있는 옵션으로 접근할 수 있게 해줍니다. 
+
+이는 `<select>` 요소와 비슷하지만, 스타일링의 제약과 차이가 존재합니다.
+
+```html
+<label for="exampleDataList" class="form-label">Datalist example</label>
+<input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Type to search...">
+<datalist id="datalistOptions">
+  <option value="San Francisco">
+  <option value="New York">
+  <option value="Seattle">
+  <option value="Los Angeles">
+  <option value="Chicago">
+</datalist>
+```
   </div>
 </details>
 
+
 <details>
-<summary> 5-2. select </summary>
-<div markdown="1">
-사용자 정의 css로 `<select>` 요소를 변경할 수 있습니다. 
+  <summary> 5-2. select </summary>
+  <div>
+  사용자 정의 `css`로 `셀렉트` 요소를 변경할 수 있습니다. 
 
 ### 기본값 & 크기 조절
 
-`.form-select 클래스`를 사용해 사용자 정의의 `<select></select>`를 사용할 수 있습니다. 
+`.form-select 클래스`를 사용해 사용자 정의의 `<select>`를 사용할 수 있습니다. 
 
 이 스타일은 브라우저 제한으로 `<select>`의 처음 외형만 변경할 수 있고, 그 안에 있는 `<option> 들의 스타일 변경은 불가능`합니다.
+크기 조절은 `.form-select-*(sm, lg) 클래스`를 사용하면 됩니다.
 
-</div>
+```html
+<h3>1. Default</h3>
+    <select class="form-select form-select-lg mb-3" aria-label="Default select example">
+        <option selected>Open this select menu</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+    </select>
+
+    <select class="form-select form-select-sm" aria-label="Default select example">
+        <option selected>Open this select menu</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+    </select>
+```
+
+### multiple
+
+보이는 option 수 (행) 지정할 수 있음
+```html
+<select class="form-select" multiple aria-label="Multiple select example">
+	<option selected>Open this select menu</option>
+	<option value="1">One</option>
+	<option value="2">Two</option>
+	<option value="3">Three</option>
+</select>
+```
+
+### Disable 하기
+
+```html
+<select class="form-select form-select-sm" aria-label="Default select example" disabled>
+	<option selected>Open this select menu</option>
+	<option value="1">One</option>
+	<option value="2">Two</option>
+	<option value="3">Three</option>
+</select>
+```
+  </div>
 </details>
 
+
 <details>
-<summary> 5-3. checkbox & radio-box</summary>
-<div>
+  <summary> 5-3. checkbox & radio-box</summary>
+  <div>
 `TODO`
 
 - 체크박스 인라인 여러개 해보기
-    
-    ![스크린샷 2023-08-28 오후 10.57.21.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/434ce23b-a37f-4283-aca5-d70ee357598c/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-08-28_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_10.57.21.png)
     
 
 ### 접근
@@ -1535,7 +1561,6 @@ readonly input은 disabled와는 다르게 `focus`나 `selected`가 될 수 있�
 
 기본적으로 체크 박스나 라디오 버튼은 `.form-check`를 이용해 수직으로 적절한 간격으로 쌓을 수 있습니다. 
 
-![스크린샷 2023-08-21 오후 11.28.28.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/65c6a809-a5a4-470c-b812-5c68a4e5b081/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-08-21_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_11.28.28.png)
 
 ```html
 <div class="form-check">
@@ -1558,7 +1583,6 @@ readonly input은 disabled와는 다르게 `focus`나 `selected`가 될 수 있�
 
 `disabled 속성`을 추가하면 `<label>과 함께 관련된 입력 폼`이 흐릿한 비활성화 상태로 표시됩니다. 
 
-![스크린샷 2023-08-21 오후 11.30.16.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e78c32d6-1573-4a9e-815d-801fec46f606/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-08-21_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_11.30.16.png)
 
 ```html
 <!--unchecked disabled-->
@@ -1599,8 +1623,6 @@ readonly input은 disabled와는 다르게 `focus`나 `selected`가 될 수 있�
 
 ### 비활성화 - 라디오 버튼
 
-![스크린샷 2023-08-21 오후 11.31.09.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6a53493c-f3bc-451e-8e2f-26a8d9d5719f/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-08-21_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_11.31.09.png)
-
 ```html
 <div class="form-check">
   <input class="form-check-input" type="radio" name="flexRadioDisabled" id="flexRadioDisabled" disabled>
@@ -1623,7 +1645,6 @@ readonly input은 disabled와는 다르게 `focus`나 `selected`가 될 수 있�
 
 `<div class=”form-check form-check-inline”>`
 
-![스크린샷 2023-08-21 오후 11.35.26.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e724a929-a347-41b3-8bd1-41890c4e2483/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-08-21_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_11.35.26.png)
 
 ```html
 <div class="form-check form-check-inline">
@@ -1641,8 +1662,6 @@ readonly input은 disabled와는 다르게 `focus`나 `selected`가 될 수 있�
 ```
 
 - 라디오 버튼 인라인
-    
-    ![스크린샷 2023-08-21 오후 11.35.58.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c76b0a7a-e532-4afe-ba74-8278aa71fd94/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-08-21_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_11.35.58.png)
     
     ```html
     <div class="form-check form-check-inline">
@@ -1666,7 +1685,6 @@ readonly input은 disabled와는 다르게 `focus`나 `selected`가 될 수 있�
 
 → 라벨을 체크박스 형식으로 만듦
 
-![스크린샷 2023-08-21 오후 11.41.56.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e5dec857-06f3-4e9b-97ed-13f83c7030f1/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-08-21_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_11.41.56.png)
 
 ```html
 <input type="checkbox" class="btn-check" id="btn-check" autocomplete="off">
@@ -1685,7 +1703,6 @@ readonly input은 disabled와는 다르게 `focus`나 `selected`가 될 수 있�
 
 type은 checkbox 나 radio 이더라도 `.btn-check`로 설정하면 `버튼처럼` 표현할 수 있습니다. 
 
-![스크린샷 2023-08-23 오전 11.42.46.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/bbf90ea0-c82f-4b87-b757-f0e8c3d627fc/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-08-23_%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB_11.42.46.png)
 
 ```html
 <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">
@@ -1700,25 +1717,446 @@ type은 checkbox 나 radio 이더라도 `.btn-check`로 설정하면 `버튼처�
 <input type="radio" class="btn-check" name="options-outlined" id="danger-outlined" autocomplete="off">
 <label class="btn btn-outline-danger" for="danger-outlined">Danger radio</label>
 ```
-</div>
+  </div>
+</details>
+
+<details>
+  <summary> 5-4. range </summary>
+  <div>
+    사용자 범위 컨트롤을 사용해 `크로스 브라우저`에서 `일관되게 표시 및 맞춤 제작`이 가능합니다.
+
+가격 범위 지정할 때 주로 사용합니다. `(ex. airbnb)` 잘 쓰이지는 않습니다. 
+
+### 개요
+
+<input `type=”range”`>에 `.form-range`를 사용해 범위 입력을 사용할 수 있습니다. track(배경)과 thumb(값)은 어느 브라우저에서도 동일하게 표시되도록 스타일링 되어있습니다. 
+
+```html
+<label for="customRange1" class="form-label">Example range</label>
+<input type="range" class="form-range" id="customRange1">
+```
+
+### 비활성화
+
+disabled 블리언 속성을 추가하면 범위 입력이 `비활성화` 되어 표시되고, `포인터 이벤트가 삭제`되며, `포커싱` 되지 않습니다.
+
+### 최소와 최대
+
+범위 입력에는 `min`, `max`를 사용해 범위를 지정할 수 있습니다. 기본값은 각각 `0`, `100` 입니다.
+
+```html
+<label for="customRange2" class="form-label">Example range</label>
+<input type="range" class="form-range" min="0" max="5" id="customRange2">
+```
+
+### 단계
+
+기본적인 범위 입력은 정수값으로 눌러집니다. 이를 변경하려면 step 값을 지정해야합니다. 
+
+```html
+<label for="customRange3" class="form-label">Example range</label>
+<input type="range" class="form-range" min="0" max="5" step="0.5" id="customRange3">
+```
+  </div>
 </details>
 
 
+<details>
+  <summary> 5-5. input groups </summary>
+  <div>
+    텍스트 입력, 사용자 정의 select, 사용자 파일 선택 등의 `폼의 좌우`에 `텍스트`, `버튼`, `버튼 그룹`을 추가해 폼 컨트롤을 간단하게 확장할 수 있습니다. 
+
+### 기본 예시
+
+추가 기능(add-on)이나 버튼을 input의 한쪽 또는 양쪽에 배치할 수 있습니다. 
+
+<label>은 입력 그룹 밖에 작성해야 합니다. 
+
+`<span class=”input-group-text” id =”basic-addon1”>~</span>`
+
+- 왼쪽에 `@` 붙이고 오른쪽에 username 작성하기
+    
+    ```html
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="basic-addon1">@</span>
+      <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+    </div>
+    ```
+    
+
+- 오른쪽에 email 도메인(@example.com) 붙이기
+    
+    ```html
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+      <span class="input-group-text" id="basic-addon2">@example.com</span>
+    </div>
+    ```
+    
+
+- 왼쪽에 기본 url(https://example.com/users/) 자동으로 붙이기
+    
+    ```html
+    <div class="mb-3">
+      <label for="basic-url" class="form-label">Your vanity URL</label>
+      <div class="input-group">
+        <span class="input-group-text" id="basic-addon3">https://example.com/users/</span>
+        <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3 basic-addon4">
+      </div>
+      <div class="form-text" id="basic-addon4">Example help text goes outside the input group.</div>
+    </div>
+    ```
+    
+
+- 왼쪽에 $ 붙이기
+    
+    ```html
+    <div class="input-group mb-3">
+      <span class="input-group-text">$</span>
+      <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+      <span class="input-group-text">.00</span>
+    </div>
+    ```
+    
+
+### 크기 조절
+
+상대적으로 크기를 조절해 주는 클래스(`input-group-*`)를 .input-group이 있는 곳에 추가하면 그 안의 콘텐츠가 자동으로 재조정됩니다. 각 요소에 폼 컨트롤 크기 조정 클래스를 추가할 필요가 없습니다.
+
+주의 : 각각의 입력 그룹 요소의 크기 변경은 지원하지 않습니다. 
+
+```html
+<div class="input-group input-group-lg, sm mb-3">
+  <span class="input-group-text" id="inputGroup-sizing-*">Small</span>
+  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-*">
+</div>
+```
+
+### 체크박스와 라디오버튼
+
+input-group의 추가 기능 자리에 텍스트 대신 체크 박스나 라디오 버튼 같은 옵션을 배치할 수 있습니다. 
+
+```html
+<!--왼쪽에 체크박스 추가-->
+<div class="input-group mb-3">
+  <div class="input-group-text">
+    <input class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
+  </div>
+  <input type="text" class="form-control" aria-label="Text input with checkbox">
+</div>
+
+<!--왼쪽에 라디오버튼 추가-->
+<div class="input-group">
+  <div class="input-group-text">
+    <input class="form-check-input mt-0" type="radio" value="" aria-label="Radio button for following text input">
+  </div>
+  <input type="text" class="form-control" aria-label="Text input with radio button">
+</div>
+```
+
+### 버튼 애드온
+
+텍스트 왼쪽 또는 오른쪽에 button을 한 개 이상 추가할 수 있습니다. 
+
+```html
+<div class="input-group mb-3">
+  <button class="btn btn-outline-secondary" type="button" id="button-addon1">Button</button>
+  <input type="text" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+</div>
+```
+
+### 드롭다운이 있는 버튼
+
+```html
+<div class="input-group mb-3">
+  <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</button>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="#">Action</a></li>
+    <li><a class="dropdown-item" href="#">Another action</a></li>
+    <li><a class="dropdown-item" href="#">Something else here</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><a class="dropdown-item" href="#">Separated link</a></li>
+  </ul>
+  <input type="text" class="form-control" aria-label="Text input with dropdown button">
+</div>
+```
+
+### 사용자 지정 폼
+
+input-group에는 사용자 정의 select 및 사용자 정의 파일 선택 지원이 포함되어잇습니다. 브라우저의 기본 버전에서는 이러한 기능은 지원되지 않습니다. 
+
+```html
+<div class="input-group mb-3">
+  <label class="input-group-text" for="inputGroupSelect01">Options</label>
+  <select class="form-select" id="inputGroupSelect01">
+    <option selected>Choose...</option>
+    <option value="1">One</option>
+    <option value="2">Two</option>
+    <option value="3">Three</option>
+  </select>
+</div>
+```
+
+### 사용자 지정 파일 선택
+
+```html
+<div class="input-group mb-3">
+  <label class="input-group-text" for="inputGroupFile01">Upload</label>
+  <input type="file" class="form-control" id="inputGroupFile01">
+</div>
+```
+  </div>
+</details>
+
+<details>
+  <summary> 5-6. floating labels</summary>
+  <div>
+입력 필드 위로 떠오르는 예쁘고 간단한 폼 라벨을 작성할 수 있습니다. 이는 input 안에서 떠오르는 문자 (아래에서 Email address)를 의미합니다. 
+
+`<input class=”form-control”>과 <label> 요소`를 함께 `.form-floating`으로 감싸면, Bootstrap의 텍스트 형식의 form field에서 floating label 사용이 가능합니다.
 
 
+```html
+<div class="form-floating mb-3">
+  <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+  <label for="floatingInput">Email address</label>
+</div>
+
+<div class="form-floating">
+  <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+  <label for="floatingPassword">Password</label>
+</div>
+```
+
+### Select
+
+`.form-control` 이외에서의 floating label은 `.form-select` 에서만 사용가능합니다. 이들은 똑같이 동작하지만, <input>과 다르게 <label>이 항상 플로팅 된 상태로 표시됩니다. 
+
+.form-floating → label이 input 안에 포함되기 해주는 클래스
+
+```html
+<div class="form-floating">
+  <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+    <option selected>Open this select menu</option>
+    <option value="1">One</option>
+    <option value="2">Two</option>
+    <option value="3">Three</option>
+  </select>
+  <label for="floatingSelect">Works with selects</label>
+</div>
+```
+
+### Disabled
+
+`disabled 불리언 속성`을 input에 추가하면 form-floating을 비활성화 할 수 있습니다. 
+
+```html
+<div class="form-floating mb-3">
+  <input type="email" class="form-control" id="floatingInputDisabled" placeholder="name@example.com" disabled>
+  <label for="floatingInputDisabled">Email address</label>
+</div>
+```
+
+### Input groups
+
+floating label은 또한 .input-group에서도 적용가능합니다. 
+
+```html
+<div class="input-group mb-3">
+  <span class="input-group-text">@</span>
+  <div class="form-floating">
+    <input type="text" class="form-control" id="floatingInputGroup1" placeholder="Username">
+    <label for="floatingInputGroup1">Username</label>
+  </div>
+</div>
+```
+
+**feedback - 구조**
+
+.input-group과 .form-floating을 유효성 검사를 위해 사용한다면, -feedback은 `.form-floating 외부`에 있고, `.input-group 내부` 에 있어야 합니다. 이는 feedback이 Javascript를 이용해 보여지는 것을 의미합니다. 
+
+```html
+<div class="input-group has-validation">
+  <span class="input-group-text">@</span>
+  <div class="form-floating is-invalid">
+    <input type="text" class="form-control is-invalid" id="floatingInputGroup2" placeholder="Username" required>
+    <label for="floatingInputGroup2">Username</label>
+  </div>
+  <div class="invalid-feedback">
+    Please choose a username.
+  </div>
+</div>
+```
+
+### 레이아웃
+
+Bootstrap 그리드 시스템을 사용할 경우, 폼 요소는 반드시 `컬럼 클래스 내`에 배치되어야 합니다.
+
+```html
+<div class="row g-2">
+
+  <div class="col-md">
+    <div class="form-floating">
+      <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com" value="mdo@example.com">
+      <label for="floatingInputGrid">Email address</label>
+    </div>
+  </div>
+
+  <div class="col-md">
+    <div class="form-floating">
+      <select class="form-select" id="floatingSelectGrid">
+        <option selected>Open this select menu</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+      </select>
+      <label for="floatingSelectGrid">Works with selects</label>
+    </div>
+  </div>
+
+</div>
+```
+  </div>
+</details>
+
+<details>
+  <summary> 5-7. layout</summary>
+  <div>
+  form에 구조를 갖게 하는 폼 레이아웃 옵션을 준비하고 있습니다. 
+
+### Form
+
+form field의 모든 그룹은 <form> 요소 안에 존재해야 합니다. 
+
+bootstsrap은 거의 모든 폼 컨트롤에 `display: block`과 `width: 100%`를 적용해 기본적으로 수직으로 쌓고 있습니다. 추가 클래스를 사용해 폼 별로 이 레이아웃을 바꿀 수 있습니다.
+
+### Form grid
+
+grid 클래스를 사용해 여러 개의 컬럼, 다양한 너비, 추가 배치 옵션이 필요한 form layout 표현이 가능합니다. 이를 위해선 Sass 변수 `$enable-grid-classes`가 활성화되어 있어야합니다. (기본이 활성화된 상태)
 
 
+```html
+<div class="row">
+  <div class="col">
+    <input type="text" class="form-control" placeholder="First name" aria-label="First name">
+  </div>
+  <div class="col">
+    <input type="text" class="form-control" placeholder="Last name" aria-label="Last name">
+  </div>
+</div>
+```
 
+### 거터
 
+거터 제어자 클래스를 추가하는 것으로, 인라인이나 블록 방향으로 거터의 너비를 조정할 수 있습니다. 
 
+이또한 Sass 변수 `$enable-grid-classes`가 활성화 되어 있어야 합니다. (기본값이 활성화된 상태)
 
+```html
+<div class="row g-3"> <!--거터 클래스가 추가되었음-->
+  <div class="col">
+    <input type="text" class="form-control" placeholder="First name" aria-label="First name">
+  </div>
+  <div class="col">
+    <input type="text" class="form-control" placeholder="Last name" aria-label="Last name">
+  </div>
+</div>
+```
 
+그리드 시스템을 사용해 보다 복잡한 레이아웃을 만들 수 있습니다.
 
+- 위 페이지를 구현한 code
+    
+    ```html
+    <form class="row g-3">
+      <div class="col-md-6">
+        <label for="inputEmail4" class="form-label">Email</label>
+        <input type="email" class="form-control" id="inputEmail4">
+      </div>
+      <div class="col-md-6">
+        <label for="inputPassword4" class="form-label">Password</label>
+        <input type="password" class="form-control" id="inputPassword4">
+      </div>
+      <div class="col-12">
+        <label for="inputAddress" class="form-label">Address</label>
+        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+      </div>
+      <div class="col-12">
+        <label for="inputAddress2" class="form-label">Address 2</label>
+        <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+      </div>
+      <div class="col-md-6">
+        <label for="inputCity" class="form-label">City</label>
+        <input type="text" class="form-control" id="inputCity">
+      </div>
+      <div class="col-md-4">
+        <label for="inputState" class="form-label">State</label>
+        <select id="inputState" class="form-select">
+          <option selected>Choose...</option>
+          <option>...</option>
+        </select>
+      </div>
+      <div class="col-md-2">
+        <label for="inputZip" class="form-label">Zip</label>
+        <input type="text" class="form-control" id="inputZip">
+      </div>
+      <div class="col-12">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="gridCheck">
+          <label class="form-check-label" for="gridCheck">
+            Check me out
+          </label>
+        </div>
+      </div>
+      <div class="col-12">
+        <button type="submit" class="btn btn-primary">Sign in</button>
+      </div>
+    </form>
+    ```
+    
 
+### 수평 폼
 
+form group에 `.row 클래스`를 추가하고, `.col-*-* 클래스`를 사용해 label이나 control의 폭을 지정할 수 있습니다. 이때 `<label>`에는 반드시 `.col-form-label`을 추가해 form control과 함께 수직 방향의 중앙에 배치하도록 합니다.
 
+```html
+<form>
+  <div class="row mb-3">
+    <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+    <div class="col-sm-10">
+      <input type="email" class="form-control" id="inputEmail3">
+    </div>
+  </div>
+  <div class="row mb-3">
+    <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+    <div class="col-sm-10">
+      <input type="password" class="form-control" id="inputPassword3">
+    </div>
+  </div>
+</form>
+```
 
+### 열 크기 조절
 
+그리드 시스템에는 `.row` 안에 `여러 개의 .col`을 몇 개라도 배치할 수 있습니다. 이 열들은 이용 가능한 너비를 균등하게 분할합니다. 
 
+아래 코드의 `.col-sm-7` 와 같은 특정 컬럼 클래스를 사용해 컬럼 서브셋을 선택해 공간을 늘리거나 줄일 수 있습니다. 또한 나머지 .col들을 균등 분할 할 수도 있습니다. 
 
+```html
+<div class="row g-3"> <!--row에서 위 아래 거터 3을 설정-->
+  <div class="col-sm-7">
+    <input type="text" class="form-control" placeholder="City" aria-label="City">
+  </div>
+  <div class="col-sm">
+    <input type="text" class="form-control" placeholder="State" aria-label="State">
+  </div>
+  <div class="col-sm">
+    <input type="text" class="form-control" placeholder="Zip" aria-label="Zip">
+  </div>
+</div>
+```
 
+자동 크기 조절, 인라인 폼은 나중에,,
+	  
+  </div>
+</details>
