@@ -11,22 +11,22 @@
   - Starter Template
   - RFS (Responsive Font Size)
   - RTL (Right To Left)
-2. [Customize](#1.-Customize)
+2. [Customize](#2.-Customize)
   - Sass
   - Component
   - CSS variable 
-3. [Layout](#1.-Layout)
+3. [Layout](#3.-Layout)
   - Breakpoints
   - Containers
   - Grid System
   - Columns
   - Gutters
-4. [Contents](#1.-Contents)
+4. [Contents](#4.-Contents)
   - Reboot
   - Typography
   - Image
   - Table
-5. [Forms](#1.-Forms)
+5. [Forms](#5.-Forms)
   - overview
   - form-control
   - select
