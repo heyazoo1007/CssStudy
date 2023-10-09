@@ -2160,3 +2160,1132 @@ form group에 `.row 클래스`를 추가하고, `.col-*-* 클래스`를 사용�
 	  
   </div>
 </details>
+
+<br>
+<br>
+
+
+<h3> 6. Component </h3>
+<details>
+  <summary> 6-1. Accordion </summary>
+  <div>
+    Collapse JavaScript 플러그인과 조합해 수직으로 접는 아코디언을 만들 수 있습니다.
+
+`TODO`(항상 열기와 기본 비교)
+
+1. 두 accordion 에서 accordion-header의 `data-bs-target`, `aria-controls`의 값이 다름
+2. accordion-body를 감싸는 div가 기본 열기는 `collapseOne`, 항상 열기는 `panelStayOpen-collapseOne`
+3. 항상 열기에서는 `data-bs-parrent=”~”`가 생략되어 있습니다. 
+
+→ 직접 테스트해 본 결과 `3번`의 문장이 있으면 한번에 하나씩 열리고, 없으면 아코디언을 항상 열어놓을 수 있습니다. 
+
+### 작동 원리
+
+`.accordion 클래스`에 `.accordion-item 클래스`로 아코디언을 구현할 수 있습니다. 
+
+```html
+<div class="accordion" id="accordionExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        Accordion Item #1
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+      </div>
+    </div>
+  </div>
+```
+
+아래 코드처럼 작성해야지 텍스트가 펴졌다가 접혔다가 할 수 있게 할 수 있습니다. 
+
+```html
+<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+```
+
+### 채우기
+
+`.accordion-flush`를 추가해 몇 개의 둥근 모서리를 삭제할 수 있고, 아코디언을 부모 컨테이너와 함께 edge-to-edge로 렌더링 합니다. 
+
+```html
+<div class="accordion accordion-flush" id="accordionFlushExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+        Accordion Item #1
+      </button>
+    </h2>
+    <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.</div>
+    </div>
+  </div>
+</div>
+```
+
+### 항상 열기
+
+다른 항목이 열렸을 때도 이전 아코디언 항목이 열린 상태로 유지되게 하고 싶으면 .accordion-collapse의 `data-bs-parent 속성을 생략`하면 됩니다. 
+
+```html
+<div class="accordion" id="accordionExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        Accordion Item #1
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <strong>This is the first item's accordion body.</strong> It is shown by default, 
+      </div>
+    </div>
+  </div>
+
+<div class="accordion" id="accordionPanelsStayOpenExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+        Accordion Item #1
+      </button>
+    </h2>
+    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"> // data--bs-parent="#accordionExample" 생략
+      <div class="accordion-body">
+        <strong>This is the first item's accordion body.</strong> It is shown by default, 
+      </div>
+    </div>
+  </div>
+</div>
+```
+  </div>
+</details>
+
+<details>
+  <summary> 6-2. Alerts </summary>
+  <div>
+  일반적인 사용자 액션에 대해 상황에 맞는 피드백 메시지를 제공합니다. 
+
+### 예시
+
+`텍스트 길이에 상관없이` 메시지를 표시할 수 있으며, 옵션으로 닫기 버튼을 제공합니다. 
+
+8가지의 테마 컬러를 사용 가능하고, 인라인으로 경고창을 닫기 위해서는 alerts JavaScript plugin을 사용합니다. 
+
+
+```html
+<div class="alert alert-primary" role="alert">
+  A simple primary alert—check it out!
+</div>
+<div class="alert alert-secondary" role="alert">
+  A simple secondary alert—check it out!
+</div>
+<div class="alert alert-success" role="alert">
+  A simple success alert—check it out!
+</div>
+<div class="alert alert-danger" role="alert">
+  A simple danger alert—check it out!
+</div>
+<div class="alert alert-warning" role="alert">
+  A simple warning alert—check it out!
+</div>
+<div class="alert alert-info" role="alert">
+  A simple info alert—check it out!
+</div>
+<div class="alert alert-light" role="alert">
+  A simple light alert—check it out!
+</div>
+<div class="alert alert-dark" role="alert">
+  A simple dark alert—check it out!
+</div>
+```
+
+### 실시간
+
+버튼을 클릭해 경고를 표시한 다음 내장된 닫기 버튼으로 경고를 해제 할 수 있습니다.
+
+아래 Show live alert 버튼을 누르면 위에 초록색 박스가 생성됩니다. 
+
+```html
+<!--여기에 JavaScript를 적용해 라이브 알림 데모를 트리거-->
+<div id="liveAlertPlaceholder"></div>
+<button type="button" class="btn btn-primary" id="liveAlertBtn">Show live alert</button>
+```
+
+### 링크 색상
+
+.alert-link 클래스를 사용하면, 경고창에 어울리는 색의 링크를 사용할 수 있습니다. 
+
+```html
+<div class="alert alert-info" role="alert">
+  A simple info alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+</div>
+<div class="alert alert-light" role="alert">
+  A simple light alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+</div>
+<div class="alert alert-dark" role="alert">
+  A simple dark alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+</div>
+```
+
+### 추가 콘텐츠
+
+경고창에는 `제목`, `단락` 및 `구분선` 등과 같은 html 요소를 포함할 수 있습니다.
+
+
+```html
+<div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">Well done!</h4>
+  <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
+  <hr> <!--구분선-->
+  <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+</div>
+```
+
+### 아이콘
+
+경고창에 icon을 추가해 만들 수도 있습니다. 
+
+```html
+<div class="alert alert-primary d-flex align-items-center" role="alert">
+
+	<!--경고 아이콘-->
+  <svg xmlns="http://www.w3.org/2000/svg" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
+    <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+  </svg>
+
+  <div>
+    An example alert with an icon
+  </div>
+</div>
+```
+
+### 무시
+
+경고창의 JavaScript 플러그인을 사용하면, 경고창을 인라인으로 닫을 수 있습니다. 
+
+close button에 .alert-dismissible의 클래스를 추가하면 경고창의 오른쪽 여백이 추가되고, `닫기 버튼`의 위치가 결정됩니다.
+
+닫기 버튼에 `data-bs-dismiss=”alert”` 속성을 추가합니다. 그러면 JavaScript 기능이 트리거 됩니다. 모든 기기에서 올바르게 동작시키려면 반드시 `<button>` 요소를 사용해야 합니다. 
+
+경고창을 닫을 때 애니메이션을 적용하려면, 반드시 .fade와 .show의 클래스를 추가해야 합니다. (경고창이 해제되면 해당 요소는 페이지 구조에서 완전히 제거됩니다)
+
+
+```html
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+```
+    
+  </div>
+</details>
+
+
+<details>
+  <summary> 6-3. Badges </summary>
+  <div>
+    부모 요소의 크기에 일치하도록 상대적인 글꼴 크기 `em`을 사용하고 있습니다. `version 5` 이후로 배지에는 더 이상 링크에 대한 `포커스나 호버 스타일은 없습니다.`
+
+```html
+<h1>Example heading <span class="badge bg-secondary">New</span></h1>
+<h2>Example heading <span class="badge bg-secondary">New</span></h2>
+<h3>Example heading <span class="badge bg-secondary">New</span></h3>
+<h4>Example heading <span class="badge bg-secondary">New</span></h4>
+<h5>Example heading <span class="badge bg-secondary">New</span></h5>
+<h6>Example heading <span class="badge bg-secondary">New</span></h6>
+```
+
+### 버튼
+
+배지는 카운터(숫자)를 제공하기 위해 링크나 버튼의 일부로 사용될 수 있습니다. 
+
+Notifications 오른쪽에 <span>으로 badge를 적용하면 됩니다. 
+
+```html
+<button type="button" class="btn btn-primary">
+  Notifications <span class="badge text-bg-secondary">4</span>
+</button>
+```
+
+### 위치
+
+카톡, 인스타그램 알림이 왔을 때 처럼 버튼 오른쪽 상단에 배지를 추가할 수 있습니다. 
+
+```html
+ <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+    99+
+		<span class="visually-hidden">unread messages</span>
+</span>
+```
+
+```html
+<button type="button" class="btn btn-primary position-relative">
+  Inbox
+  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+    99+
+    <span class="visually-hidden">unread messages</span>
+  </span>
+</button>
+```
+
+아래 코드를 추가해 숫자가 없는 알림을 설정할 수 있습니다. 
+
+```html
+<span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+```
+
+```html
+<button type="button" class="btn btn-primary position-relative">
+  Profile
+  <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+    <span class="visually-hidden">New alerts</span>
+  </span>
+</button>
+```
+
+### 색상
+
+`.text-bg-*`를 이용해 배지의 색상을 지정할 수 있습니다. 
+
+```html
+<span class="badge text-bg-primary">Primary</span>
+<span class="badge text-bg-secondary">Secondary</span>
+<span class="badge text-bg-success">Success</span>
+<span class="badge text-bg-danger">Danger</span>
+<span class="badge text-bg-warning">Warning</span>
+<span class="badge text-bg-info">Info</span>
+<span class="badge text-bg-light">Light</span>
+<span class="badge text-bg-dark">Dark</span>
+```
+
+### 필 배지
+
+`.rounded-pill`을 사용하면 border-radius보다 더 동그란 배지를 만들 수 있습니다. 
+
+```html
+<span class="badge rounded-pill text-bg-primary">Primary</span>
+<span class="badge rounded-pill text-bg-secondary">Secondary</span>
+<span class="badge rounded-pill text-bg-success">Success</span>
+<span class="badge rounded-pill text-bg-danger">Danger</span>
+<span class="badge rounded-pill text-bg-warning">Warning</span>
+<span class="badge rounded-pill text-bg-info">Info</span>
+<span class="badge rounded-pill text-bg-light">Light</span>
+<span class="badge rounded-pill text-bg-dark">Dark</span>
+```   
+    
+  </div>
+</details>
+
+<details>
+  <summary> 6-4. Breadcrumb </summary>
+  <div>
+  CSS로 구분자를 자동으로 추가해 내비게이션 계층 내에서 `현재 페이지의 위치`를 표시합니다. 사이트나 웹 앱에서 유저의 위치를 보여주는 부차적인 내비게이션 시스템을 의미합니다. `페이지 인덱스`
+
+### 예시
+
+`<nav>` 요소 안에 `.breadcrumb 클래스`를 이용해 브레드크럼을 표현할 수 있습니다. 
+
+```html
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item active" aria-current="page">Home</li>
+  </ol>
+</nav>
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Library</li>
+  </ol>
+</nav>
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item"><a href="#">Library</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Data</li>
+  </ol>
+</nav>
+```
+  </div>
+</details>
+
+<details>
+  <summary> 6-5. Buttons </summary>
+  <div>
+    다양한 크기/상태의 버튼 스타일을 사용할 수 있습니다. 
+
+### Base class
+
+버튼은 .btn 클래스를 이용해 구현할 수 있습니다. 색깔을 지정해도 되고, 하지 않아도 됩니다 
+
+`class=”btn”`만 사용하면 테두리가 없는 버튼을 만들 수 있고, `class=”btn-*”`와 같은 형식이면 버튼에 색을 입힐 수 있습니다.
+
+- 색상이 없는 버튼
+
+
+```html
+<button type="button" class="btn">Base class</button>
+```
+
+- 색상 버튼
+
+```html
+<button type="button" class="btn btn-primary">Primary</button>
+<button type="button" class="btn btn-secondary">Secondary</button>
+<button type="button" class="btn btn-success">Success</button>
+<button type="button" class="btn btn-danger">Danger</button>
+<button type="button" class="btn btn-warning">Warning</button>
+<button type="button" class="btn btn-info">Info</button>
+<button type="button" class="btn btn-light">Light</button>
+<button type="button" class="btn btn-dark">Dark</button>
+
+<!--link로도 버튼을 표현할 수 있습니다-->
+<button type="button" class="btn btn-link">Link</button>
+```
+
+- 버튼 테두리
+    
+    가벼운 배경색의 버튼도 설정할 수 있습니다. 
+    
+    
+    ```html
+    <button type="button" class="btn btn-outline-primary">Primary</button>
+    <button type="button" class="btn btn-outline-secondary">Secondary</button>
+    <button type="button" class="btn btn-outline-success">Success</button>
+    <button type="button" class="btn btn-outline-danger">Danger</button>
+    <button type="button" class="btn btn-outline-warning">Warning</button>
+    <button type="button" class="btn btn-outline-info">Info</button>
+    <button type="button" class="btn btn-outline-light">Light</button>
+    <button type="button" class="btn btn-outline-dark">Dark</button>
+    ```
+    
+
+### 크기
+
+`.btn-*{lg, sm}`을 이용해 버튼 크기를 설정할 수 있습니다. 
+
+```html
+<!--lg 크기-->
+<button type="button" class="btn btn-primary btn-lg">Large button</button>
+
+<!--sm 크기-->
+<button type="button" class="btn btn-primary btn-sm">Small button</button>
+```
+
+버튼 크기를 사용자로 설정할 수 있습니다. 
+
+```html
+<button type="button" class="btn btn-primary"
+        style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+  Custom button
+</button>
+```
+
+### 비활성화 상태
+
+<button> 요소에 disabled 속성을 추가해 버튼을 비활성화 할 수 있습니다. 버튼이 비활성화 되면 아무것도 적용되지 않고, hover나 활성화된 상태로 눌리는 것을 막습니다. 
+
+```html
+<button type="button" class="btn btn-primary" disabled>Primary button</button>
+<button type="button" class="btn btn-secondary" disabled>Button</button>
+<button type="button" class="btn btn-outline-primary" disabled>Primary button</button>
+<button type="button" class="btn btn-outline-secondary" disabled>Button</button>
+```
+
+- 참고
+    
+    `<a> 요소`에서 버튼을 비활성화하는 경우는 `.disabled 클래스`를 추가해야 합니다. 따로 disabled 속성을 지원하지 않기 때문입니다. <a>를 사용하는 비활성화 버튼은 href 속성을 포함하면 안됩니다.  → 코드 추가해 놓기
+    
+
+### 버튼 블록
+
+Display와 gap 유틸리티를 조합해, 전체 너비에 걸친 반응형 “블록 버튼”을 만들 수 있습니다. 
+
+```html
+<div class="d-grid gap-2">
+  <button class="btn btn-primary" type="button">Button</button>
+  <button class="btn btn-primary" type="button">Button</button>
+</div>
+```
+
+여기에 `.gap-2`, `.d-md-block`, `.col-6`, `.max-auto`을 추가해 버튼의 너비나 위치를 조절할 수 있습니다. 
+
+- `.gap-2`, `.d-md-block`
+    
+    ```html
+    <div class="d-grid gap-2 d-md-block">
+      <button class="btn btn-primary" type="button">Button</button>
+      <button class="btn btn-primary" type="button">Button</button>
+    </div>
+    ```
+    
+- `.gap-2`, `.col-6`, `.mx-auto`
+    
+    ```html
+    <div class="d-grid gap-2 col-6 mx-auto">
+      <button class="btn btn-primary" type="button">Button</button>
+      <button class="btn btn-primary" type="button">Button</button>
+    </div>
+    ```
+    
+  </div>
+</details>
+
+<details>
+  <summary> 6-6. Button group </summary>
+  <div>
+    여러 개의 버튼을 묶어 `그룹화` 하거나, `세로`로 겹쳐 놓을 수 있습니다. 
+
+### 기본 예시
+
+.btn-group으로 .btn 요소를 포장할 수 있습니다. 
+
+```html
+<div class="btn-group" role="group" aria-label="Basic example">
+  <button type="button" class="btn btn-primary">Left</button>
+  <button type="button" class="btn btn-primary">Middle</button>
+  <button type="button" class="btn btn-primary">Right</button>
+</div>
+toolbar도 적용하기
+```
+
+- 현재 위치한 버튼 표시
+ 
+    ```html
+    <!-- .active 와 aria-current="page를 추가 -->
+    <div class="btn-group">
+      <a href="#" class="btn btn-primary active" aria-current="page">Active link</a>
+      <a href="#" class="btn btn-primary">Link</a>
+      <a href="#" class="btn btn-primary">Link</a>
+    </div>
+    ```
+    
+
+- 테두리 스타일
+    
+    각 버튼 요소에 `.btn-outline-*`를 적용하면 됩니다.
+        
+    ```html
+    <div class="btn-group" role="group" aria-label="Basic outlined example">
+      <button type="button" class="btn btn-outline-primary">Left</button>
+      <button type="button" class="btn btn-outline-primary">Middle</button>
+      <button type="button" class="btn btn-outline-primary">Right</button>
+    </div>
+    ```
+    
+
+### 체크박스와 라디오버튼 그룹
+
+버튼에 체크박스/라디오 토글 버튼을 조합해 매끄러운 외형의 버튼 그룹을 만들 수 있습니다. 
+
+- 체크박스 + 버튼
+    
+    여러개의 버튼을 선택할 수 있습니다 
+    
+    ```html
+    <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+      <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
+      <label class="btn btn-outline-primary" for="btncheck1">Checkbox 1</label>
+    
+      <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
+      <label class="btn btn-outline-primary" for="btncheck2">Checkbox 2</label>
+    
+      <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off">
+      <label class="btn btn-outline-primary" for="btncheck3">Checkbox 3</label>
+    </div>
+    ```
+    
+
+- 라디오버튼 + 버튼
+    
+    버튼이 라디오버튼처럼 기본 하나가 선택되어있고, 다른 버튼을 하나씩 선택할 수 있습니다. 
+    
+    ```html
+    
+    ```
+    
+
+이외에 `버튼 툴바`, `버튼 중첩`, `버튼 수직`으로 버튼을 표현할 수도 있습니다.
+    
+  </div>
+</details>
+
+<details>
+  <summary> 6-7. Card </summary>
+  <div>
+
+  `TODO`
+
+1. .card-img-`top` 과 .card-img-`bottom`의 차이 알아보기(위치변경은 태그 위치를 변경하면 되는데, 왜 클래스까지 바뀌었는지?)
+    - 실습
+        
+        아래부분이 둥글고, 윗부분은 뾰족한 것을 확인할 수 있습니다. 이로써 .card-img-*에서 *에 들어가는 부분이 둥글게 표현되는 것을 의미하는 것을 알 수 있습니다. 
+         
+2. 아래 코드에서 rounded-`start` 를 rounded-`end`로 바꿔보기
+    - 코드
+        
+        ```html
+        <div class="card mb-3" style="max-width: 540px;">
+          <div class="row g-0">
+        
+            <div class="col-md-4">
+              <img src="..." class="img-fluid rounded-end" alt="...">
+            </div>
+        
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+              </div>
+            </div>
+        
+          </div>
+        </div>
+        ```
+        
+    - 실습
+     
+3. bg-transparent에서 `transparent` 말고 `다른색` 적용해보기
+    - 코드
+        
+        ```html
+        <div class="card border-success mb-3 bg-primary" style="max-width: 18rem;">
+          <div class="card-header bg-transparent border-success">Header</div>
+          <div class="card-body text-success">
+            <h5 class="card-title">Success card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+          <div class="card-footer bg-transparent border-success">Footer</div>
+        </div>
+        ```
+        
+    - 실습
+        
+        bg-success를 header와 footer에 적용했습니다. 
+        
+        transparent도 primary, secondary, success 처럼 색을 의미합니다.         
+
+---
+
+### 기본
+
+카드는 폭이 고정되어 있지 않기 때문에 부모 요소의 폭에 맞춰집니다. 
+
+```html
+<div class="card" style="width: 18rem;">
+
+  <img src="..." class="card-img-top" alt="...">
+
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+
+</div>
+```
+
+### 콘텐츠 유형
+
+카드에서는 이미지나 텍스트, 목록, 링크 등의 다양한 콘텐츠를 지원하고 있습니다. 
+
+1. Body
+    
+    .card-body 클래스로 카드를 빌드할 수 있습니다. 카드 내에 여백이 필요할 때 상요합니다. 
+    
+   ```html
+    <div class="card">
+      <div class="card-body">
+        This is some text within a card body.
+      </div>
+    </div>
+    ```
+    
+
+1. Title, Text, Link
+    
+    `카드 타이틀`은 <h*> 태그에 `.card-title`을 적용해 표현할 수 있습니다.
+    
+    `링크`는 <a> 태그에 `.card-link`를 적용하면 욉니다. 
+    
+    `서브 타이틀`은 <h*> 태그에 `.card-subtitle`을 적용하면 됩니다. 
+    
+    `Tip` : .card-title과 .card-subtitle을 .card-body 안에 배치하면 카드 제목과 서브 타이틀이 깔끔하게 적용됩니다. 
+        
+    ```html
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="card-link">Card link</a>
+        <a href="#" class="card-link">Another link</a>
+      </div>
+    </div>
+    ```
+    
+2. Image
+    
+    카드에 이미지를 추가하기 위해선 `.card-img-top 클래스`를 추가해줘야 합니다. `.card-body` 내부에 `.card-text`를 설정하면 카드에 텍스트를 추가할 수 있습니다. 
+       
+    ```html
+    <div class="card" style="width: 18rem;">
+    
+      <img src="..." class="card-img-top" alt="...">
+    
+      <div class="card-body">
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      </div>
+    
+    </div>
+    ```
+    
+3. 목록 그룹
+    
+    `.list-group-flush`를 이용해 카드 안에 목록을 만들 수 있습니다. 
+       
+    ```html
+    <div class="card" style="width: 18rem;">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">An item</li>
+        <li class="list-group-item">A second item</li>
+        <li class="list-group-item">A third item</li>
+      </ul>
+    </div>
+    ```
+    
+4. **키친 싱크**
+    
+    복수의 콘텐츠 타입을 조합하고, 필요한 카드를 작성하거나 모든 것을 이 안에 넣을 수 있습니다. 
+    
+    - 이미지, 블록, 텍스트 스타일, 목록 그룹 포함
+        
+    ```html
+    <div class="card" style="width: 18rem;">
+    
+      <img src="..." class="card-img-top" alt="...">
+    
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      </div>
+    
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">An item</li>
+        <li class="list-group-item">A second item</li>
+        <li class="list-group-item">A third item</li>
+      </ul>
+    
+      <div class="card-body">
+        <a href="#" class="card-link">Card link</a>
+        <a href="#" class="card-link">Another link</a>
+      </div>
+    
+    </div>
+    ```
+    
+5. 헤더
+    
+    `.card-header`
+        
+    ```html
+    <div class="card">
+      <div class="card-header">
+        Featured
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">Special title treatment</h5>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+    ```
+    
+
+### 크기 조절
+
+카드는 별도의 설정을 하지 않은 한 100%의 width를 가로 폭으로 가집니다. 필요하다면 별도의 설정으로 크기를 변경할 수 있습니다. 
+
+- 그리드 마크업 사용하기
+    
+    Grid를 사용해, 필요에 따라 카드를 행과 열 안에 넣어서 사용합니다. 
+     
+    ```html
+    <div class="row">
+      <div class="col-sm-6 mb-3 mb-sm-0">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Special title treatment</h5>
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Special title treatment</h5>
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    ```
+    
+- 유틸리티 사용하기
+    
+    크기 조절 유틸리티를 사용해 카드의 가로 폭을 빠르게 설정할 수 있습니다. 
+       
+    ```html
+    <div class="card w-75 mb-3">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a href="#" class="btn btn-primary">Button</a>
+      </div>
+    </div>
+    
+    <div class="card w-50">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a href="#" class="btn btn-primary">Button</a>
+      </div>
+    </div>
+    ```
+    
+- 사용자 지정 css 사용하기
+    
+    스타일 시트나 인라인 스타일로 가로 폭을 적용할 수 있습니다. 
+    
+    ```html
+    <div class="card" style="width: 18rem;">
+    
+      <div class="card-body">
+        <h5 class="card-title">Special title treatment</h5>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    
+    </div>
+    ```
+    
+
+### 텍스트 정렬
+
+`.text-center`, `.text-end` 클래스 사용으로 카드 안의 텍스트 정렬할 수 있습니다. 
+
+```html
+<div class="card mb-3" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">Special title treatment</h5>
+    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+
+<div class="card text-center mb-3" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">Special title treatment</h5>
+    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+
+<div class="card text-end" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">Special title treatment</h5>
+    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+```
+
+### 내비게이션
+
+`.nav,` `.nav-tabs`를 이용해 카드의 header 혹은 block에 내비게이션을 적용할 수 있습니다. 
+
+```html
+<div class="card text-center">
+  <div class="card-header">
+
+    <ul class="nav nav-tabs card-header-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="true" href="#">Active</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+      </li>
+    </ul>
+
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Special title treatment</h5>
+    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+```
+
+### 이미지
+
+카드에 이미지를 다양한 방식으로 추가할 수 있습니다. 
+
+```html
+<div class="card mb-3">
+
+  <img src="..." class="card-img-top" alt="...">
+
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+  </div>
+
+</div>
+```
+
+```html
+<div class="card">
+
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+  </div>
+
+  <img src="..." class="card-img-bottom" alt="...">
+
+</div>
+```
+
+### 이미지 오버레이
+
+이미지를 카드의 배경으로 한 뒤 카드의 텍스트를 이미지에 덮어씌울 수 있습니다. 
+
+이미지에 따라 추가 스타일/유틸리티가 필요할 수도 아닐 수도 있습니다. 
+
+> `주의` : 콘텐츠가 이미지 높이보다 커지면 일부 콘텐츠는 이미지 외부에 표시될 수 있습니다.
+
+```html
+<div class="card text-bg-dark">
+  <img src="..." class="card-img" alt="...">
+  <div class="card-img-overlay">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    <p class="card-text"><small>Last updated 3 mins ago</small></p>
+  </div>
+</div>
+```
+
+### 수평
+
+그리드와 유틸리티 클래스를 조합해 모바일에 친화적이고, 반응형적인 방법으로 카드를 수평 배치할 수 있습니다 `(이미지 - 카드)`
+
+- 거터 삭제(.g-0), 카드 breakpoint md로 배치한 예시
+
+```html
+<div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+
+    <div class="col-md-4">
+      <img src="..." class="img-fluid rounded-start" alt="...">
+    </div>
+
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+      </div>
+    </div>
+
+  </div>
+</div>
+```
+
+### 카드 스타일
+
+카드에는 다양한 배경/모서리/색 을 지정할 수 있습니다. 
+
+색깔 지정은 `.text-bg-{color}`, `.text-{color}`, `.bg-{color}` 클래스로 할 수 있습니다. 
+
+```html
+<!--카드에 회색 입힌 예제-->
+<div class="card text-bg-secondary mb-3" style="max-width: 18rem;">
+  <div class="card-header">Header</div>
+  <div class="card-body">
+    <h5 class="card-title">Secondary card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+</div>
+
+<!--라인만 있는 회색 카드-->
+<div class="card border-secondary mb-3" style="max-width: 18rem;">
+  <div class="card-header">Header</div>
+  <div class="card-body text-secondary">
+    <h5 class="card-title">Secondary card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+</div>
+```
+
+### 믹스인 유틸리티
+
+필요에 따라서 카드의 header나 footer의 라인을 변경하거나 `.bg-transparent`를 사용해 background-color를 삭제 할 수 있습니다. 
+
+```html
+<div class="card border-success mb-3" style="max-width: 18rem;">
+  <div class="card-header bg-transparent border-success">Header</div>
+  <div class="card-body text-success">
+    <h5 class="card-title">Success card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+  <div class="card-footer bg-transparent border-success">Footer</div>
+</div>
+```
+
+### 카드 레이아웃
+
+카드 레이아웃으로 일련의 카드를 배치할 수 있습니다. 다만 현재는 **카드 레이아웃 옵션은 반응형을 지원하고 있지 않습니다.** 
+
+- 카드 그룹
+    
+    카드 그룹을 사용해 폭과 높이의 열이 같은 하나의 요소로 카드를 렌더링합니다. 
+    
+    `display: flex;` 를 사용해 `sm` 중단점부터 같은 크기의 상태로 설정됩니다. 
+    
+    footer가 있는 카드 그룹을 사용하면, 그 내용도 그룹에 맞춰서 자동으로 정렬됩니다.
+        
+    ```html
+    <div class="card-group">
+    
+      <div class="card">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+        </div>
+      </div>
+    
+      <div class="card">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+          <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+        </div>
+      </div>
+    
+      <div class="card">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+          <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+        </div>
+      </div>
+    </div>
+    ```
+    
+- 그리드 카드
+    
+    bootstrap 그리드 시스템과 `.row-cols` 클래스를 사용해, `행마다 표시하는 그리드 열개수`를 제어할 수 있습니다. 
+    
+    예를들어 `.row-cols-1`은 한줄로 카드를 배치하고, `.row-cols-md-2`는 하나의 행에  두 개의 열에 맞춰 카드가 정렬됩니다. 
+        
+    ```html
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+      <div class="col">
+        <div class="card">
+          <img src="..." class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <img src="..." class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <img src="..." class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <img src="..." class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    ```
+    
+    같은 높이가 필요한 경우에는 카드에 .h-100 클래스를 추가합니다. 
+     
+    ```html
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <div class="col">
+        <div class="card h-100">
+          <img src="..." class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100">
+          <img src="..." class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a short card.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100">
+          <img src="..." class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100">
+          <img src="..." class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    ```
+    
+  </div>
+</details>
+
