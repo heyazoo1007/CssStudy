@@ -3289,3 +3289,855 @@ toolbar도 적용하기
   </div>
 </details>
 
+
+<details>
+  <summary> 6-8. Carousel</summary>
+  <div>
+  `TODO`
+
+캐러샐 자동 넘기기 디폴트 지연시간이 몇인지 알아보기, 개발에는 디폴트가 중요함!!!
+
+→ 기본값은 5000으로서, 5초입니다. 링크 참고
+
+---
+
+캐러샐은 css 3d 트랜스폼과 약간의 javascript로 만들어진 `일련의 콘텐츠를 순환시키기 위한 슬라이드쇼`입니다. 
+
+### Basic examples
+
+
+```html
+<div id="carouselExample" class="carousel slide">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="..." class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="..." class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="..." class="d-block w-100" alt="...">
+    </div>
+  </div>
+
+<!--이전 사진으로 이동하게 해주는 버튼-->
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+
+<!--다음 사진으로 이동하게 해주는 버튼-->
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+```
+
+- 꼭 지켜야할 것들
+    - `.active` 를 슬라이드 중 하나에 무조건 추가해야합니다. 그렇지 않으면 캐러샐이 보이지 않습니다.
+    - `.carousel` 클래스에 유일한 `id` 추가하기 (하나의 페이지에 여러개의 캐러셀을 사용하는 경우)
+    - 캐러셀 요소의 id에 매치되는 값을 `data-bs-target 속성`에 꼭 추가를 해야합니다.
+
+### 인디케이터
+
+- 코드
+    
+    ```html
+    <div id="carouselExampleIndicators" class="carousel slide">
+    
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      </div>
+    
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="..." class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="..." class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="..." class="d-block w-100" alt="...">
+        </div>
+      </div>
+    
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+    ```
+    
+
+### 설명문
+
+`.carousel-item` 안의 `.carousel-caption 요소`를 사용해 슬라이드에 설명문(caption)을 쉽게 추가할 수 있습니다. 
+
+또한 `.d-none`, `.d-md-block`을 사용해 작은 뷰포트에서 간단하게 설명문(captioin)을 감추는 것도 가능합니다. .d-md-block만 있으면 안쓰는 거랑 똑같음 → 같이 쓰는게 맞음 반대케이스(다 보이게 해놓고, 특정 크기에서 안 보이게 할 수 있음)
+
+- 코드
+    
+    ```html
+    <div id="carouselExampleCaptions" class="carousel slide">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      </div>
+    
+      <div class="carousel-inner">
+    
+        <div class="carousel-item active">
+          <img src="..." class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>First slide label</h5>
+            <p>Some representative placeholder content for the first slide.</p>
+          </div>
+        </div>
+    
+        <div class="carousel-item">
+          <img src="..." class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Second slide label</h5>
+            <p>Some representative placeholder content for the second slide.</p>
+          </div>
+        </div>
+    
+        <div class="carousel-item">
+          <img src="..." class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Third slide label</h5>
+            <p>Some representative placeholder content for the third slide.</p>
+          </div>
+        </div>
+      </div>
+    
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    
+    </div>
+    ```
+    
+
+### 덮어씌우기
+
+캐러셀에 `.carousel-fade`를 추가하면 슬라이드 대신에 fade 트랜지션으로 슬라이드를 애니메이션화 시킬 수 있습니다. (움직이는 장면은 이 링크의 ‘덮어씌우기’를 참고해주시면 됩니다)
+
+- 코드
+    
+    ```html
+    <div id="carouselExampleFade" class="carousel slide carousel-fade">
+    
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="..." class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="..." class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="..." class="d-block w-100" alt="...">
+        </div>
+      </div>
+    
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    
+    </div>
+    ```
+    
+
+### Autoplaying carousels
+
+`.data-bs-ride`를 상위 carousel 클래스에 추가하면 캐러셀이 자동으로 재생될수 있게 할 수 있습니다. 자동 슬라이드를 멈추려면 pause 옵션을 설정한 뒤 마우스로 호버하면 자동으로 멈출 수 있습니다. 
+
+- 코드
+    
+    ```html
+    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+    
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="..." class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="..." class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="..." class="d-block w-100" alt="...">
+        </div>
+      </div>
+    
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    
+    </div>
+    ```
+    
+
+### .carousel-item 지연시간
+
+자동으로 슬라이드 될 때의 지연시간을 변경하려면 `.carousel-item` 에 `data-bs-interval=””`을 추가하면 됩니다. 
+
+- 코드
+    
+    ```html
+    <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+    
+      <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="10000">
+          <img src="..." class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item" data-bs-interval="2000">
+          <img src="..." class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="..." class="d-block w-100" alt="...">
+        </div>
+      </div>
+    
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    
+    </div>
+    ```
+    
+
+### Autoplaying carousels without controls
+
+위의 캐러셀과 다르게 이전, 다음으로 넘어가는 버튼 없이 자동으로 넘어가기만 하는 캐러셀을 구현할 수 있습니다. 
+
+.`carousel-item` 안에 있는 이미지에 `.d-block` 과 `.w-100` 을 추가하면 됩니다. 
+
+- 코드
+    
+    ```html
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+    
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="..." class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="..." class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="..." class="d-block w-100" alt="...">
+        </div>
+      </div>
+    
+    </div>
+    ```
+    
+
+### 화살표/캡션/인디케이터 검정색으로 변경
+
+.carousel 클래스에 .carousel-dark를 추가하면 됩니다. 
+
+- 코드
+    
+    ```html
+    <div id="carouselExampleDark" class="carousel carousel-dark slide">
+    
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      </div>
+    
+      <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="10000">
+          <img src="..." class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>First slide label</h5>
+            <p>Some representative placeholder content for the first slide.</p>
+          </div>
+        </div>
+        <div class="carousel-item" data-bs-interval="2000">
+          <img src="..." class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Second slide label</h5>
+            <p>Some representative placeholder content for the second slide.</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="..." class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Third slide label</h5>
+            <p>Some representative placeholder content for the third slide.</p>
+          </div>
+        </div>
+      </div>
+    
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    
+    </div>
+    ```
+    
+  </div>
+</details>
+
+<details>
+  <summary> 6-9. Close Button </summary>
+  <div>
+모달이나 경고창 등의 콘텐츠를 닫을 때 사용합니다. `.btn-close`를 사용해 컴포넌트를 닫는 옵션을 제공합니다.
+
+```html
+<!--기본-->
+<button type="button" class="btn-close" aria-label="Close"></button>
+
+<!--비활성화-->
+<button type="button" class="btn-close" disabled aria-label="Close"></button>
+```
+  </div>
+</details>
+
+<details>
+  <summary> 6-10. Collapse</summary>
+  <div>
+  Collapse는 콘텐츠의 표시와 숨김에 사용됩니다. 요소를 접으면 height가 `기존 값에서 0으로` 애니메이션화 됩니다. 다만 `.collapse 요소`에 `padding`은 사용할 수 없습니다. 
+
+### 기본
+
+왼쪽은 링크로 카드 열기, 오른쪽은 버튼으로 카드를 엽니다. 
+
+둘 다 모두 공통으로 `data-bs-toggle=”collapse” 속성`을 가집니다. 
+
+다른 점은 링크는 `href=”#collapseExample”`로 id가 collapseExample인 collapse를 가리키고, 버튼은 `data-bs-target=”#collapseExample”`로 collapse를 가리킵니다.
+
+```html
+<p class="d-inline-flex gap-1">
+
+  <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+    Link with href
+  </a>
+
+  <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    Button with data-bs-target
+  </button>
+
+</p>
+
+<!--버튼을 누르면 나오는 카드-->
+<div class="collapse" id="collapseExample">
+  <div class="card card-body">
+    Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+  </div>
+</div>
+```
+
+### 수평 콜랩스
+
+수평 콜랩스는 수직으로 카드가 내려오는 것이 아닌 가로로 카드가 나올 수 있게 해줍니다. 
+
+`.collapse-horizontal 클래스`를 card의 부모로 설정하면 구현할 수 있습니다. 
+
+```html
+<p>
+  <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+    Toggle width collapse
+  </button>
+</p>
+
+<div style="min-height: 120px;">
+  <div class="collapse collapse-horizontal" id="collapseWidthExample">
+    <div class="card card-body" style="width: 300px;">
+      This is some placeholder content for a horizontal collapse. It's hidden by default and shown when triggered.
+    </div>
+  </div>
+</div>
+```
+
+### 다중 항목 및 목표
+
+<button>이나 <a>는 data-bs-target 혹은 href을 이용해 카드를 지정할 수 있고, 동시에 여러 개의 카드를 지정할 수도 있습니다. 이는 `data-bs-target = “.multi-collapse”` 와 `aria-controls="collapseId1 collapseId2"` 설정으로 만들 수 있습니다. (아래 코드에서 Toggle both elements 버튼을 참고해주세요)
+
+```html
+<p class="d-inline-flex gap-1">
+  <a class="btn btn-primary" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Toggle first element</a>
+  <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Toggle second element</button>
+  <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2">Toggle both elements</button>
+</p>
+
+<!--첫번째 카드-->
+<div class="row">
+  <div class="col">
+    <div class="collapse multi-collapse" id="multiCollapseExample1">
+      <div class="card card-body">
+        Some placeholder content for the first collapse component of this multi-collapse example. This panel is hidden by default but revealed when the user activates the relevant trigger.
+      </div>
+    </div>
+  </div>
+
+<!--두번째 카드-->
+  <div class="col">
+    <div class="collapse multi-collapse" id="multiCollapseExample2">
+      <div class="card card-body">
+        Some placeholder content for the second collapse component of this multi-collapse example. This panel is hidden by default but revealed when the user activates the relevant trigger.
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+### ⚠️주의⚠️
+
+<aside>
+1️⃣ collapse를 사용하기 위해서는 `aria-expanded`를 반드시 추가해줘야 합니다. 이 속성은 컨트롤레 연결된 접을 수 있는 요소의 현재 상태를 리더나 동일한 지원 기술에 명시적으로 전달합니다. 요소가 기본으로 닫혀있으려면 `aria-expanded=”false”`로 명시합니다.
+</aside>
+</br>
+
+<aside>
+2️⃣ `data-bs-target` 속성이 `id` 셀렉터를 바라보는 경우, 접을 수 있는 요소의 `id`를 한 `aria-controls` 속성을 컨트롤 요소에 추가하지 않으면 안 됩니다.
+
+</aside>
+  </div>
+</details>
+
+<details>
+  <summary> 6-11. dropdown </summary>
+  <div>
+
+  `TODO`
+
+1. data-bs-toggle이 무엇인지 찾아보기 
+    
+    `data-bs-toggle`과 `data-bs-target`을 사용하면 대상을 지정해 요소의 동작을 자동으로 할당할 수 있습니다. 예시로 `data-bs-toggle = “collapse/dropdown”` 등을 사용하고, 그게 적용될 타겟을 `data-bs-target`의 값에 적는 것입니다. 
+    
+    `data-bs-toggle=dropdown`을 제거하면 버튼을 눌러도 리스트가 보이지 않습니다. 
+    
+    - 코드
+        
+        ```html
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        	Button with data-bs-target
+        </button>
+        
+        <!--버튼을 누르면 나오는 카드-->
+        <div class="collapse" id="collapseExample">
+          <div class="card card-body">
+            Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+          </div>
+        </div>
+        ```
+        
+2. dropdown-toggle 테스트 해보기
+    - 실습
+        
+        dropdown-toggle 제거시 버튼에서 화살표가 없어짐
+             
+        → 이를 통해 .dropdown-toggle은 버튼에서 화살표를 표시해주는 클래스임을 추측할 수 있습니다. 
+        
+    - 코드
+        
+        ```html
+        <div class="dropdown">
+        
+          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Dropdown button
+          </button>
+        
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        
+        </div>
+        ```
+        
+
+---
+
+드롭다운은 동적인 포지셔닝과 뷰포트 검출을 제공하는 서드 파티의 라이브러리인 `Popper`로 빌드되어 있습니다. 그래서 Bootstrap의 Javascript 전에 `popper.min.js`를 넣거나 Popper를 포함한 `bootstrap.bundle.min.js/bootstrap.bundle.js`를 사용해야 합니다. 
+
+### 기본 예시
+
+버튼을 누르면 `.dropdown-menu`에 있는 리스트를 확인할 수 있습니다. secondary 색 외에도 모든 색에 대한 드롭다운을 만들 수 있습니다. 
+
+```html
+<div class="dropdown">
+
+  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Dropdown button
+  </button>
+
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="#">Action</a></li>
+    <li><a class="dropdown-item" href="#">Another action</a></li>
+    <li><a class="dropdown-item" href="#">Something else here</a></li>
+  </ul>
+
+</div>
+```
+
+### 분할버튼
+
+`.dropdown-toggle-split`을 `<button> 요소`에 클래스로 추가해 드롭다운 화살표 주위의 적절한 간격을 확보할 수 있습니다.
+
+→ 화살표의 좌우 padding을 25% 줄이고, margin-left를 삭제 
+
+```html
+<!-- Example split danger button -->
+<div class="btn-group">
+  <button type="button" class="btn btn-danger">Action</button>
+  <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+    <span class="visually-hidden">Toggle Dropdown</span>
+  </button>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="#">Action</a></li>
+    <li><a class="dropdown-item" href="#">Another action</a></li>
+    <li><a class="dropdown-item" href="#">Something else here</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><a class="dropdown-item" href="#">Separated link</a></li>
+  </ul>
+</div>
+```
+
+### 크기 조절
+
+드롭다운의 크기는<button> 택에 `.btn-{breakpoint}`를 추가해서 적용할 수 있습니다. 
+
+```html
+<div class="btn-group">
+  <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Small button
+  </button>
+  <ul class="dropdown-menu">
+    ...
+  </ul>
+</div>
+<div class="btn-group">
+  <button class="btn btn-secondary btn-sm" type="button">
+    Small split button
+  </button>
+  <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+    <span class="visually-hidden">Toggle Dropdown</span>
+  </button>
+  <ul class="dropdown-menu">
+    ...
+  </ul>
+</div>
+```
+
+### Dropup
+
+드롭다운이 아닌, `.dropup`을 이용해 드롭업을 할 수도 있습니다. 
+
+- 코드
+    
+    ```html
+    <!-- Default dropup button -->
+    <div class="btn-group dropup">
+      <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        Dropup
+      </button>
+      <ul class="dropdown-menu">
+        <!-- Dropdown menu links -->
+      </ul>
+    </div>
+    
+    <!-- Split dropup button -->
+    <div class="btn-group dropup">
+      <button type="button" class="btn btn-secondary">
+        Split dropup
+      </button>
+      <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+        <span class="visually-hidden">Toggle Dropdown</span>
+      </button>
+      <ul class="dropdown-menu">
+        <!-- Dropdown menu links -->
+      </ul>
+    </div>
+    ```
+    
+
+- Dropend
+
+부모 요소에 .dropend를 추가해 요소의 오른쪽에도 표시할 수 있습니다. 
+
+- 코드
+    
+    ```html
+    <!-- Default dropend button -->
+    <div class="btn-group dropend">
+      <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        Dropend
+      </button>
+      <ul class="dropdown-menu">
+        <!-- Dropdown menu links -->
+      </ul>
+    </div>
+    
+    <!-- Split dropend button -->
+    <div class="btn-group dropend">
+      <button type="button" class="btn btn-secondary">
+        Split dropend
+      </button>
+      <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+        <span class="visually-hidden">Toggle Dropend</span>
+      </button>
+      <ul class="dropdown-menu">
+        <!-- Dropdown menu links -->
+      </ul>
+    </div>
+    ```
+    
+
+- Dropstart
+
+부모요소에 .dropstart를 추가해 요소의 왼쪽에도 추가할 수 있습니다.
+
+- 코드
+    
+    ```html
+    <!-- Default dropstart button -->
+    <div class="btn-group dropstart">
+      <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        Dropstart
+      </button>
+      <ul class="dropdown-menu">
+        <!-- Dropdown menu links -->
+      </ul>
+    </div>
+    
+    <!-- Split dropstart button -->
+    <div class="btn-group dropstart">
+      <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+        <span class="visually-hidden">Toggle Dropstart</span>
+      </button>
+      <ul class="dropdown-menu">
+        <!-- Dropdown menu links -->
+      </ul>
+      <button type="button" class="btn btn-secondary">
+        Split dropstart
+      </button>
+    </div>
+    ```
+    
+
+### 메뉴 정렬
+
+기본적으로, 드롭다운 메뉴는 자동으로 위에서 100%위치와, 부모의 왼쪽에 따라 배치됩니다. 이는 `.drop* 클래스`로 방향을 조절할 수 있습니다. 
+
+드롭다운을 오른쪽으로 배치하려면 `.dropdown-menu`에 `.dropdown-menu-end`를 추가하면 됩니다. 
+
+dropdown-menu-center (기본값이랑 비슷) → 테스트
+
+dropdown-menu-end
+
+```html
+<div class="btn-group">
+  <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+    Right-aligned menu example
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item" type="button">Action</button></li>
+    <li><button class="dropdown-item" type="button">Another action</button></li>
+    <li><button class="dropdown-item" type="button">Something else here</button></li>
+  </ul>
+</div>
+```
+
+### 정렬 옵션
+
+여러개의 다양한 드롭다운을 한 곳에 위치시킬 수도 있습니다. 
+
+- 코드
+    
+    ```html
+    <div class="btn-group">
+      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Dropdown
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Menu item</a></li>
+        <li><a class="dropdown-item" href="#">Menu item</a></li>
+        <li><a class="dropdown-item" href="#">Menu item</a></li>
+      </ul>
+    </div>
+    
+    <div class="btn-group">
+      <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        Right-aligned menu
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end">
+        <li><a class="dropdown-item" href="#">Menu item</a></li>
+        <li><a class="dropdown-item" href="#">Menu item</a></li>
+        <li><a class="dropdown-item" href="#">Menu item</a></li>
+      </ul>
+    </div>
+    
+    <div class="btn-group">
+      <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+        Left-aligned, right-aligned lg
+      </button>
+      <ul class="dropdown-menu dropdown-menu-lg-end">
+        <li><a class="dropdown-item" href="#">Menu item</a></li>
+        <li><a class="dropdown-item" href="#">Menu item</a></li>
+        <li><a class="dropdown-item" href="#">Menu item</a></li>
+      </ul>
+    </div>
+    
+    <div class="btn-group">
+      <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+        Right-aligned, left-aligned lg
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
+        <li><a class="dropdown-item" href="#">Menu item</a></li>
+        <li><a class="dropdown-item" href="#">Menu item</a></li>
+        <li><a class="dropdown-item" href="#">Menu item</a></li>
+      </ul>
+    </div>
+    
+    <div class="btn-group dropstart">
+      <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        Dropstart
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Menu item</a></li>
+        <li><a class="dropdown-item" href="#">Menu item</a></li>
+        <li><a class="dropdown-item" href="#">Menu item</a></li>
+      </ul>
+    </div>
+    
+    <div class="btn-group dropend">
+      <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        Dropend
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Menu item</a></li>
+        <li><a class="dropdown-item" href="#">Menu item</a></li>
+        <li><a class="dropdown-item" href="#">Menu item</a></li>
+      </ul>
+    </div>
+    
+    <div class="btn-group dropup">
+      <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        Dropup
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Menu item</a></li>
+        <li><a class="dropdown-item" href="#">Menu item</a></li>
+        <li><a class="dropdown-item" href="#">Menu item</a></li>
+      </ul>
+    </div>
+    ```
+    
+
+### 메뉴 콘텐츠
+
+- 헤더
+    
+    임의의 드롭다운 메뉴에서 .dropdown-header를 이용해 헤더를 추가할 수 있습니다.
+      
+    - 코드
+        
+        ```html
+        <ul class="dropdown-menu">
+          <li><h6 class="dropdown-header">Dropdown header</h6></li>
+          <li><a class="dropdown-item" href="#">Action</a></li>
+          <li><a class="dropdown-item" href="#">Another action</a></li>
+        </ul>
+        ```
+        
+- 구분선
+    
+    구분선으로 드롭메뉴에서 관련 아이템끼리 나눌 수 있습니다.
+      
+    - 코드
+        
+        ```html
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#">Action</a></li>
+          <li><a class="dropdown-item" href="#">Another action</a></li>
+          <li><a class="dropdown-item" href="#">Something else here</a></li>
+        
+        	<!--구분선-->
+          <li><hr class="dropdown-divider"></li>
+        
+          <li><a class="dropdown-item" href="#">Separated link</a></li>
+        </ul>
+        ```
+        
+
+### 폼
+
+드롭다운 메뉴 안에 폼을 넣을 수도 있습니다. 
+
+- 코드
+    
+    ```html
+    <div class="dropdown-menu">
+    
+      <form class="px-4 py-3">
+        <div class="mb-3">
+          <label for="exampleDropdownFormEmail1" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="email@example.com">
+        </div>
+        <div class="mb-3">
+          <label for="exampleDropdownFormPassword1" class="form-label">Password</label>
+          <input type="password" class="form-control" id="exampleDropdownFormPassword1" placeholder="Password">
+        </div>
+        <div class="mb-3">
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="dropdownCheck">
+            <label class="form-check-label" for="dropdownCheck">
+              Remember me
+            </label>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Sign in</button>
+      </form>
+    
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" href="#">New around here? Sign up</a>
+      <a class="dropdown-item" href="#">Forgot password?</a>
+    </div>
+    ```
+    
+  </div>
+</details>
+
+
+
+
+
