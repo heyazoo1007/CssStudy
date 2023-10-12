@@ -4137,6 +4137,1167 @@ dropdown-menu-end
   </div>
 </details>
 
+<details>	
+  <summary> 6-12. list group</summary>
+  <div>
+    목록 그룹은 일련의 콘텐츠를 보여주기 위한 유연하고, 강력한 컴포넌트 입니다. 그룹을 변경하거나 확장해 모든 콘텐츠를 지원할 수 있습니다. 
+
+### 기본 예시
+
+리스트는 `.list-group`로, 각 리스트 항목은 `.list-group-item`으로 설정해 표현할 수 있습니다. 
+
+```html
+<ul class="list-group">
+  <li class="list-group-item">An item</li>
+  <li class="list-group-item">A second item</li>
+  <li class="list-group-item">A third item</li>
+  <li class="list-group-item">A fourth item</li>
+  <li class="list-group-item">And a fifth one</li>
+</ul>
+```
+
+- 활성화된 항목
+    
+    `.list-group-item`에 `.active`를 추가해 현재 활성화 된 선택 범위를 알 수 있습니다. 
+     
+    ```html
+    <ul class="list-group">
+      <li class="list-group-item active" aria-current="true">An active item</li>
+      <li class="list-group-item">A second item</li>
+      <li class="list-group-item">A third item</li>
+      <li class="list-group-item">A fourth item</li>
+      <li class="list-group-item">And a fifth one</li>
+    </ul>
+    ```
+    
+
+- 비활성화된 항목
+    
+    `.list-group-item`에 `.disabled`를 추가하면 비활성화 할 수 있습니다. 
+    
+    ```html
+    <ul class="list-group">
+    	<li class="list-group-item disabled" aria-disabled="true">A disabled item</li>
+    </ul>
+    ```
+    
+
+### 링크와 버튼
+
+`<a>`나 `<button>`에 `.list-group-item-action`을 사용해 actionable한 목록 그룹 아이템을 만들 수 있습니다. 
+
+> 여기에서는 `표준 .btn 클래스`를 사용하지 않도록 주의해야 합니다
+> 
+
+```html
+<div class="list-group">
+  <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
+    The current link item
+  </a>
+  <a href="#" class="list-group-item list-group-item-action">A second link item</a>
+  <a href="#" class="list-group-item list-group-item-action">A third link item</a>
+  <a href="#" class="list-group-item list-group-item-action">A fourth link item</a>
+
+<!--리스트 비활성화-->
+  <a class="list-group-item list-group-item-action disabled" aria-disabled="true">A disabled link item</a>
+</div>
+```
+
+`<button>` 에는 disabled 불리언 속성을 사용할 수 있습니다. `<a>`에는 disabled 속성이 지원되지 않습니다. 
+
+```html
+<div class="list-group">
+  <button type="button" class="list-group-item list-group-item-action active" aria-current="true">
+    The current button
+  </button>
+  <button type="button" class="list-group-item list-group-item-action">A second button item</button>
+  <button type="button" class="list-group-item list-group-item-action">A third button item</button>
+  <button type="button" class="list-group-item list-group-item-action">A fourth button item</button>
+  <button type="button" class="list-group-item list-group-item-action" disabled>A disabled button item</button>
+</div>
+```
+
+### 숫자
+
+`.list-group-numbered`라는 제어자 클래스를 추가해 `숫자 목록 리스트 그룹`을 만들 수 있습니다. 숫자는 css에 의해 추가되므로 목록 그룹 아이템 내에서 배치가 간단하고 재정의하기도 쉽습니다. 
+
+```html
+<!--리스트를 추가하면 자동으로 4번이 생성됨-->
+<ol class="list-group list-group-numbered">
+  <li class="list-group-item">A list item</li>
+  <li class="list-group-item">A list item</li>
+  <li class="list-group-item">A list item</li>
+</ol>
+```
+
+- 배지를 추가한 리스트 그룹
+    
+    - 코드
+        
+        ```html
+        <ol class="list-group list-group-numbered">
+        
+          <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+              <div class="fw-bold">Subheading</div>
+              Content for list item
+            </div>
+        
+            <span class="badge bg-primary rounded-pill">14</span>
+          </li>
+        
+          <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+              <div class="fw-bold">Subheading</div>
+              Content for list item
+            </div>
+            <span class="badge bg-primary rounded-pill">14</span>
+          </li>
+        
+          <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+              <div class="fw-bold">Subheading</div>
+              Content for list item
+            </div>
+            <span class="badge bg-primary rounded-pill">14</span>
+          </li>
+        
+        </ol>
+        ```
+        
+
+### 수평
+
+`list group`의 아이템 레이아웃을 수평으로 놓고싶으면 `.list-group-horizonta`l을 추가하면 됩니다. 중단점에 따라 수평여부를 설정하고 싶으면 `.list-group-horizontal-{sm|md|lg|xl|xxl}`를 설정해 특정 중단점의 min-width로 시작하는 목록그룹으로 수평화할 수 있습니다. 
+
+> ⚠️주의 : 수평 목록그룹을 flush 목록 그룹과 조합할 수는 없습니다.
+> 
+
+```html
+<ul class="list-group list-group-horizontal">
+  <li class="list-group-item">An item</li>
+  <li class="list-group-item">A second item</li>
+  <li class="list-group-item">A third item</li>
+</ul>
+
+<ul class="list-group list-group-horizontal-{sm|md|lg|xl|xxl">
+  <li class="list-group-item">An item</li>
+  <li class="list-group-item">A second item</li>
+  <li class="list-group-item">A third item</li>
+</ul>
+```
+
+- 목록 그룹의 아이템을 수평 방향의 동일한 너비로 설정하고 싶다면 목록 그룹의 각 아이템에 `.flex-fill`을 추가
+- 위 예시에서 `한 행에 많은 <li>를 추가`했을 때 계속해서 양옆으로만 목록들이 추가되었습니다. 아래로 밀려나는 것은 없었음
+
+### 색상
+
+리스트 아이템에 색을 적용하고 싶으면 `.list-group-item`에 `.list-group-item-{color}`를 설정하면 됩니다.
+
+```html
+<ul class="list-group">
+	<li class="list-group-item list-group-item-primary">A simple primary list group item</li>
+</ul>
+```
+
+- 색상 적용된 리스트 그룹에 링크 걸기
+    
+    ```html
+    <div class="list-group">
+    	<a href="#" class="list-group-item list-group-item-action list-group-item-primary">A simple primary list group item</a>
+    </div>
+    ```
+    
+
+### 배지 포함
+
+```html
+<ul class="list-group">
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    A list item
+    <span class="badge bg-primary rounded-pill">14</span>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    A second list item
+    <span class="badge bg-primary rounded-pill">2</span>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    A third list item
+    <span class="badge bg-primary rounded-pill">1</span>
+  </li>
+</ul>
+```
+
+- `d-flex` : 1번 사진에서 2번 사진으로 만들어 주는 속성
+    - 내부 아이템을 수직으로 정렬해주는 것?
+    - 사진
+        
+        [참고 링크](https://espania.tistory.com/142)
+        
+        ![1번](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/08ae18db-d51b-4578-b21e-59e27e5a61d7/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7(36).png)
+        
+        1번
+        
+        ![2번](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/baefe792-8200-4c2c-8885-732832edd867/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7(37).png)
+        
+        2번
+        
+    
+
+### 체크박스와 라디오버튼
+
+리스트 아이템에 체크박스와 라디오버튼을 적용할 수 있습니다. 
+
+```html
+<ul class="list-group">
+	<li class="list-group-item">
+    <input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox">
+    <label class="form-check-label" for="firstCheckbox">First checkbox</label>
+  </li>
+	<li class="list-group-item">
+    <input class="form-check-input me-1" type="radio" name="listGroupRadio" value="" id="firstRadio" checked>
+    <label class="form-check-label" for="firstRadio">First radio</label>
+	</li>
+</li>
+```
+  </div>
+</details>
+
+
+<details>
+  <summary> 6-13. Modal </summary>
+  <div>
+  모달은 일반적으로 기존 화면 위에 `플로팅` 되는 화면을 의미합니다. 
+
+### 작동 원리
+
+- 모달은 문서 내의 `다른 모든것 위`에 배치되어 <body>의 스크롤을 제거하고 모달의 콘텐츠가 스크롤 되도록 함
+- 모달의 `“배경”을 클릭`하면 자동으로 모달이 닫힘
+- `한번에 하나`의 모달만 지원(중첩된 모달은 지원 안됨)
+- `position: fixed` 사용
+- 가능한 다른 요소와의 간섭을 피하기 위해 모달 html을 `최상단`에 위치(다른 고정 요소 안에 `.modal`을 중첩해 넣으면 문제 가능성 높음)
+
+### 예시
+
+- static 모달 예시
+    
+    - position과 display가 오버라이드 됨
+    - 모달 header, 모달 body, 모달 footer가 포함됨
+    - 코드
+        
+        ```html
+        <div class="modal" tabindex="-1">
+          <div class="modal-dialog">
+            <div class="modal-content">
+        
+              <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+        
+              <div class="modal-body">
+                <p>Modal body text goes here.</p>
+              </div>
+        
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+        
+            </div>
+          </div>
+        </div>
+        ```
+        
+        - `tabindex=”-1”`
+            
+            tabindex는 키보드로 포커스를 줄 수 있는 속성입니다.
+            tabindex=-1로 설정하면 키보드 탭으로 포커스가 잡히지 않게 됩니다.
+            이렇게 하는 이유는 다음 주제 영역으로 갈 때 그 사이에 있는 a태그를 거치지 않기 위함입니다.
+            
+        - `modal-dialog`
+        - `modal-content`
+
+### 라이브 데모
+
+버튼을 누르면 모달 화면이 위에서 아래로 나타납니다. 
+
+위에서 언급한 것처럼 모달창이 띄어져있을 때 배경을 클릭하면 모달창이 닫힙니다. 
+
+- 코드
+    
+    ```html
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      Launch demo modal
+    </button>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+    
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+    
+          <div class="modal-body">
+            ...
+          </div>
+    
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+    
+        </div>
+      </div>
+    </div>
+    ```
+    
+
+### 정적 백드롭
+
+백드롭을 static으로 설정하면 배경을 클릭해도 모달은 닫히지 않습니다. 
+
+- 코드
+    
+    ```html
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+      Launch static backdrop modal
+    </button>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+    
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+    
+          <div class="modal-body">
+            ...
+          </div>
+    
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Understood</button>
+          </div>
+    
+        </div>
+      </div>
+    </div>
+    ```
+    
+
+### 콘텐츠 스크롤
+
+`.modal-dialog`에 `.modal-dialog-scrollable`을 추가하면 긴 모달 본체를 스크롤 할 수 있습니다. 
+
+```html
+<!-- Scrollable modal -->
+<div class="modal-dialog modal-dialog-scrollable">
+  ...
+</div>
+```
+
+### 모달 간 토글
+
+`data-bs-target` 과 `data-bs-toggle` 속성을 교묘하게 배치함으로써 여러 모달을 토글할 수 있습니다. 예시로 이미 열려있는 로그인 모달에서 비밀번호 재설정의 모달을 열 수 있습니다. `주의할 점`은 여러 개의 모달을 동시에 열 수 없습니다. 
+
+- 첫번째 모달 코드
+    
+    ```html
+    <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+    
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Modal 1</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            Show a second modal and hide this one with the button below.
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Open second modal</button>
+          </div>
+    
+        </div>
+      </div>
+    </div>
+    ```
+    
+
+- 두번째 모달 코드
+    
+    ```html
+    
+    <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+    
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Modal 2</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+    
+          <div class="modal-body">
+            Hide this modal and show the first with the button below.
+          </div>
+    
+          <div class="modal-footer">
+            <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Back to first</button>
+          </div>
+    
+        </div>
+      </div>
+    </div>
+    
+    <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Open first modal</button>
+    ```
+    
+  </div>
+</details>
+
+<details>
+  <summary> 6-14. Navbar </summary>
+  <div>
+    ### 작동 원리
+
+- 내비게이션 바는 `.navbar`를 `.navbar-expand-{sm|md|lg|xl|xxl}`로 감싸야하고, color scheme 클래스 필요
+- 내비게이션과 그 콘텐츠는 기본적으로 유동적임. container를 변경해 다양한 방법으로 가로폭 제한 가능
+- 접근성 확보를 위해 `<nav> 요소`를 사용하거나, `<div>에 role=”navigation”`을 추가해 스크린 리더 사용자를 위해 랜드마크가 되는 곳임을 명시적으로 알려줘야 함
+- 현재 페이지에는 `aria-current=”page”`, 세트 안에서의 현재 아이템은 `aria-current=”true’`를 사용해 표현할 수 있음
+
+### 지원 콘텐츠
+
+내비게이션에서 지원하는 `서브 컴포넌트`는 다음과 같습니다. 
+
+- `.navbar-brand` : 회사/제품/프로젝트 이름
+- `.navbar-nav` : full-height 보다 가벼운 네비게이션
+- `.navbar-toggler`
+- `.navbar-text` : 수직 방향으로 센터링된 문자열 추가
+- `.collapse.navbar-collapse` : 부모 중단점에 따라 내비게이션 바의 콘텐츠 그룹화 또는 감출 수 있음
+- `.navbar-scroll` : max-height와 scroll expanded navbar content 가능
+
+### 기본 예시
+
+- 코드
+    
+    ```html
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+    
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+    
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+    
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+    
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Dropdown
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </li>
+    
+            <li class="nav-item">
+              <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+            </li>
+          </ul>
+    
+          <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+        </div>
+    
+      </div>
+    </nav>
+    ```
+    
+
+### 브랜드
+
+`.navbar-brand`를 이용해 대부분의 요소에 적용 가능합니다. 
+
+- 텍스트
+    
+    `.navbar-brand` 클래스(클래스에 따른 css를 먹음)를 요소 내의 텍스트에 추가
+    
+    - 코드
+        
+        ```html
+        <!-- As a link -->
+        <nav class="navbar bg-body-tertiary">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#">Navbar</a>
+          </div>
+        </nav>
+        
+        <!-- As a heading -->
+        <nav class="navbar bg-body-tertiary">
+          <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1">Navbar</span>
+          </div>
+        </nav>
+        ```
+        
+    
+- 이미지
+      
+    `.navbar-brand` 안에 텍스트 대신 `<img>`를 사용할 수 있습니다. 
+    
+    - 코드
+        
+        ```html
+        <nav class="navbar bg-body-tertiary">
+          <div class="container">
+            <a class="navbar-brand" href="#">
+              <img src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Bootstrap" width="30" height="24">
+            </a>
+          </div>
+        </nav>
+        ```
+        
+    
+- 이미지 & 텍스트
+       
+    추가 유틸리티를 사용해 이미지와 텍스트를 동시에 추가할 수 있습니다. `<img>`에 `.d-inline-block`과 `.align-text-top`을 사용하고 있다는 것에 주목해야 합니다. 
+    
+    ```html
+    <nav class="navbar bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+          Bootstrap
+        </a>
+      </div>
+    </nav>
+    ```
+    
+
+### 네비게이션 바
+
+내비게이션 바 안에서 내비게이션 링크는 **수평 방향으로 펼쳐져 깔끔하게 정렬**됩니다. 
+
+- 현재 페이지 나타내기
+    - `.nav-link`에 `.active`를 추가
+    - `.nav-link`에는 `aria-current 속성` 추가
+
+- 기본 예시
+      
+    - 코드
+        
+        ```html
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+          <div class="container-fluid">
+        
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+        
+            <div class="collapse navbar-collapse" id="navbarNav">
+        
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Features</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Pricing</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                </li>
+              </ul>
+        
+            </div>
+        
+          </div>
+        </nav>
+        ```
+        
+
+- 기본 예시와 동일한 화면이지만 <li> 없애기
+    - `.nav-link`를 사용하고 있기에 목록 기반 접근법을 완전히 피할 수 있음
+    - 코드
+        
+        ```html
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+          <div class="container-fluid">
+        
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+        
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+              <div class="navbar-nav">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                <a class="nav-link" href="#">Features</a>
+                <a class="nav-link" href="#">Pricing</a>
+                <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+              </div>
+            </div>
+        
+          </div>
+        </nav>
+        ```
+        
+
+- 내비게이션 바에 드롭다운 사용하기
+    
+    드롭다운 메뉴는 `배치를 위한 줄바꿈 요소`가 필요하기 때문에 `.nav-item`과 `.nav-link`는 다른 중첩된 요소로 분리해 사용해야 합니다.
+    
+    - 코드
+        
+        ```html
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+          <div class="container-fluid">
+        
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+        
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav">
+        
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+        
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Features</a>
+                </li>
+        
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Pricing</a>
+                </li>
+        
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Dropdown link
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+        
+          </div>
+        </nav>
+        ```
+        
+
+### 폼
+
+내비게이션 바 내에 다양한 폼 컨트롤 및 컴포넌트를 배치할 수 있습니다. 이 외에 `input group`, `button`을 내비게이션 바에 추가할 수 있습니다. 
+
+```html
+<nav class="navbar bg-body-tertiary">
+
+  <div class="container-fluid">
+    <form class="d-flex" role="search">
+      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+  </div>
+
+</nav>
+```
+
+### 텍스트
+
+문자열의 수직 방향과 수평 간격을 `.navbar-text`로 조절할 수 있습니다. 
+
+```html
+<nav class="navbar bg-body-tertiary">
+  <div class="container-fluid">
+    <span class="navbar-text">
+      Navbar text with an inline element
+    </span>
+  </div>
+</nav>
+```
+
+### 색상 스키마
+
+어두운 버전의 내비게이션은 `data-bs-theme=”dark”`를 추가하거나 `style=”background-color: {color};”`를 `.nav`에 추가하면 됩니다. 
+
+```html
+<nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+  <!-- Navbar content -->
+</nav>
+
+<nav class="navbar bg-primary" data-bs-theme="dark">
+  <!-- Navbar content -->
+</nav>
+
+<nav class="navbar" style="background-color: #e3f2fd;">
+  <!-- Navbar content -->
+</nav>
+```
+
+### 배치
+
+위치 유틸리티를 사용해 내비게이션 바를 정적이지 않은 위치에 배치할 수 있습니다. 
+
+- 상단/하단 고정 : `fixed-{top|bottom}`
+
+    - 코드
+        
+        ```html
+        <!--Fixed top-->
+        <nav class="navbar fixed-top bg-body-tertiary">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#">Fixed top</a>
+          </div>
+        </nav>
+        
+        <!--Fixed bottom-->
+        <nav class="navbar fixed-bottom bg-body-tertiary">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#">Fixed bottom</a>
+          </div>
+        </nav>
+        ```
+        
+- `sticky-{top|bottom}`
+    
+    - 코드
+        
+        ```html
+        <!--Sticky top -->
+        <nav class="navbar sticky-top bg-body-tertiary">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#">Sticky top</a>
+          </div>
+        </nav>
+        
+        <!--Sticky bottom -->
+        <nav class="navbar sticky-bottom bg-body-tertiary">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#">Sticky bottom</a>
+          </div>
+        </nav>
+        ```
+        
+
+### 반응형 행동
+
+`.navbar-toggler`, `.navbar-collapse`, `.navbar-expand-{sm| md | lg| xl | xxl}` 클래스를 사용해 **콘텐츠가 버튼 뒤쪽에서 접히는 시점을 결정**할 수 있습니다. 
+
+항상 접히는 내비게이션 바의 경우에는 `.navbar-expand` 클래스를 추가하지 않아도 됩니다. 
+
+- 토글
+    
+    내비게이션 바의 토글은 기본적으로 왼쪽 정렬이지만, .navbar-brand와 같은 형제 요소와 연결되는 경우는 자동으로 오른쪽 정렬이 됨
+     
+    - 코드
+        
+        ```html
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+          <div class="container-fluid">
+        
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+        
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+              <a class="navbar-brand" href="#">Hidden brand</a>
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                </li>
+              </ul>
+        
+              <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+              </form>
+        
+            </div>
+          </div>
+        
+        </nav>
+        ```
+        
+    
+- 외부 콘텐츠
+    
+    구조적으로 .navbar 바깥쪽에 있는 콘텐츠를 위해 collapse plugin을 사용해 컨테이너 요소를 트리거할 때 사용할 수 있습니다. 
+    
+    ```html
+    <div class="collapse" id="navbarToggleExternalContent" data-bs-theme="dark">
+      <div class="bg-dark p-4">
+        <h5 class="text-body-emphasis h4">Collapsed content</h5>
+        <span class="text-body-secondary">Toggleable via the navbar brand.</span>
+      </div>
+    </div>
+    
+    <!--메뉴 버튼--> 
+    <!--data-bs-target이 위의 id를 가리키고 있음을 알 수 있음-->
+    <nav class="navbar navbar-dark bg-dark">
+      <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </nav>
+    ```
+    
+- 오프캔버스
+    
+    버튼을 누르면 가장 바깥 웹 페이지에서 내비게이션이 열릴 수 있습니다. 
+    
+    `.navbar-expand-*` 를 이용하면 됩니다. 
+     
+    - 코드
+        
+        ```html
+        <nav class="navbar bg-body-tertiary fixed-top">
+          <div class="container-fluid">
+        
+            <a class="navbar-brand" href="#">Offcanvas navbar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+        
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        
+              <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Offcanvas</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+              </div>
+        
+              <div class="offcanvas-body">
+                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Dropdown
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">Action</a></li>
+                      <li><a class="dropdown-item" href="#">Another action</a></li>
+                      <li>
+                        <hr class="dropdown-divider">
+                      </li>
+                      <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                  </li>
+                </ul>
+        
+                <form class="d-flex mt-3" role="search">
+                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+              </div>
+            </div>
+        
+          </div>
+        </nav>
+        ```
+  </div>
+</details>
+
+<details>
+  <summary> 6-15. Navs and tabs </summary>
+  <div>
+
+  Boostrap에 포함된 내비게이션 컴포넌트를 어떻게 사용하는지에 대한 설명입니다. 
+
+### 기본 내비게이션
+
+`.nav` 클래스에 `.nav-item`으로 구현하고, 현재 있는 페이지 활성화는 `.active`로 표현하면 됩니다. 비활성화는 `.disabled`를 추가하면 됩니다. (disabled 불리언 속성으로는 적용이 되지 않습니다)
+
+```html
+<ul class="nav">
+
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="#">Active</a>
+  </li>
+
+  <li class="nav-item">
+    <a class="nav-link" href="#">Link</a>
+  </li>
+
+  <li class="nav-item">
+    <a class="nav-link" href="#">Link</a>
+  </li>
+
+  <li class="nav-item">
+    <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+  </li>
+
+</ul>
+```
+
+### 정렬
+
+내비게이션의 기본은 왼쪽 정렬이지만 `.justify-content-{center|end}`를 이용해 내비게이션 정렬을 변경할 수 있습니다. 
+
+- 가운데 정렬
+     
+    - 코드
+        
+        ```html
+        <ul class="nav justify-content-center">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Active</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+          </li>
+        </ul>
+        ```
+        
+    
+- 오른쪽 정렬
+       
+    - 코드
+        
+        ```html
+        <ul class="nav justify-content-end">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Active</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+          </li>
+        </ul>
+        ```
+        
+    
+
+### 수직 정렬
+
+`.flex-column` 을 이용해 내비게이션을 세로로 만들 수 있습니다. 특정 뷰포트에서 이를 적용하고 싶지 않다면 `.flex-{sm|md|lg|xl|xxl}-column`을 사용해주세요. 아래 코드 1번, 2번 모두 아래 화면을 만듭니다. 
+
+```html
+<!--1번-->
+<ul class="nav flex-column">
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="#">Active</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Link</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Link</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+  </li>
+</ul>
+
+<!--2번-->
+<nav class="nav flex-column">
+  <a class="nav-link active" aria-current="page" href="#">Active</a>
+  <a class="nav-link" href="#">Link</a>
+  <a class="nav-link" href="#">Link</a>
+  <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+</nav>
+
+```
+
+### 탭
+
+`.nav-tabs 클래스`로 탭이 있는 내비게이션을 구현할 수 있습니다. 
+
+- 코드
+    
+    ```html
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="#">Active</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+      </li>
+    </ul>
+    ```
+    
+
+### Pills
+
+`.nav-pills`를 사용해 아래와 같이 만들 수 있습니다. 
+
+- 코드
+    
+    ```html
+    <ul class="nav nav-pills">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="#">Active</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+      </li>
+    </ul>
+    ```
+    
+
+### Underline
+
+`.nav-underline`을 이용해 내비게이션 현재 페이지에 밑줄을 그을 수 있습니다. 
+
+- 코드
+    
+    ```html
+    <ul class="nav nav-underline">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="#">Active</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+      </li>
+    </ul>
+    ```
+    
+
+### 접근성에 대하여
+
+내비게이션 바를 제공하기 위해 내비게이션을 사용하고 있는 경우, `<ul>`의 부모 컨테이너에 `role="navigation"`을 추가하거나, `<nav>` 요소를 내비게이션 전체에 감싸주세요. role을 `<ul>` 자체에 추가하지 마세요.
+
+내비게이션 바는, `.nav-tabs`에서 시각적으로는 탭으로 보여지게 되있지만, `role="tablist"`, `role="tab"`, `role="tabpanel"` 속성을 부여하지 **말아** 주십시오. 이들은 [ARIA Authoring Practices Guide tabs pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/)에서 설명된 것처럼, 동적인 탭 인터페이스에만 적절합니다. [JavaScript behavior](https://getbootstrap.kr/docs/5.3/components/navs-tabs/#javascript-behavior)를 참조해 주십시오. JavaScript는 활성화된 탭에 `aria-selected="true"`를 추가하여 선택된 상태를 처리하기 때문에 인터페이스에서는 `aria-current` 속성이 필요하지 않습니다.
+
+### 드롭다운 사용
+
+`.dropdown 클래스`를 이용해 내비게이션에 드롭다운을 추가할 수 있습니다. 
+
+- 드롭다운이 있는 탭
+    
+    - 코드
+        
+        ```html
+        <ul class="nav nav-tabs">
+        
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Active</a>
+          </li>
+        
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Dropdown</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Separated link</a></li>
+            </ul>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+          </li>
+        
+        </ul>
+        ```
+        
+- 드롭다운이 있는 pills
+    
+    - 코드
+        
+        ```html
+        <ul class="nav nav-pills">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Active</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Dropdown</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Separated link</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+          </li>
+        </ul>
+        ```
+    
+  </div>
+</details>
+
 
 
 
