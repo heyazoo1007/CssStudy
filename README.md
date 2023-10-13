@@ -5294,6 +5294,562 @@ dropdown-menu-end
           </li>
         </ul>
         ```
+  </div>
+</details>
+
+
+<details>
+  <summary> 6-16. Pagination </summary>
+  <div>
+  페이지네이션은 여러 페이지에 일련의 내용이 관련이 있음을 나타냅니다. 
+
+### 개요
+
+페이지네이션은 `<nav> 요소`를 사용해 그것을 스크린 리더나 기타 지원 기술에서 내비게이션 영역으로 식별합니다. 
+
+페이지에는 여러 개의 내비게이션 영역이 있을 가능성이 높기 때문에 그 목적을 반영하기 위해 `<nav>요소`에 `aria-label`을 붙이는 것을 권장합니다. 예시로 페이지네이션 컴포넌트를 사용해 `일련의 검색 결과 사이를 이동`하는 경우 적절한 라벨은 `aria-label=”Search results pages”`가 됩니다. 
+
+### 예시
+
+```html
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+  </ul>
+</nav>
+```
+
+### 아이콘 사용하기
+
+```html
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+		<!--아이콘 적용 영역-->
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+		<!--아이콘 적용 영역-->
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+
+  </ul>
+</nav>
+```
+
+### 비활성화 및 활성화 상태
+
+페이지네이션에서도 클릭할 수 없는 링크에는 `.disabled`를, 현재 페이지는 `.active`를 사용합니다. 
+
+<aside>
+⚠️ `<a>요소`의 링크를 비활성화한다면 항상 `tabindex=”-1”`을 추가하고 그 기능을 완전히 비활성화 하기 위해 사용자 정의 JS를 사용해야 합니다.
+
+</aside>
+
+```html
+<nav aria-label="...">
+  <ul class="pagination">
+    <li class="page-item disabled">
+      <a class="page-link">Previous</a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item active" aria-current="page">
+      <a class="page-link" href="#">2</a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#">Next</a>
+    </li>
+  </ul>
+</nav>
+```
+
+### 크기 조절
+
+페이지네이션의 크기 변경은 `.pagination-{sm|lg}`를 사용하면 됩니다. 
+
+```html
+<nav aria-label="...">
+  <ul class="pagination pagination-lg">
+    <li class="page-item active" aria-current="page">
+      <span class="page-link">1</span>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+  </ul>
+</nav>
+```
+
+### 정렬
+
+페이지네이션의 정렬은 `.justify-content-{center|end}`를 사용하면 됩니다.
+
+- 가운데 정렬
+
+```html
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+    <li class="page-item disabled">
+      <a class="page-link">Previous</a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#">Next</a>
+    </li>
+  </ul>
+</nav>
+```
+
+- 오른쪽 정렬
+
+```html
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-end">
+    <li class="page-item disabled">
+      <a class="page-link">Previous</a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#">Next</a>
+    </li>
+  </ul>
+</nav>
+```
+    
+  </div>
+</details>
+
+<details>
+  <summary> 6-17. Placeholders</summary>
+  <div>
+  로딩 플레이스홀더는 컴포넌트나 페이지에 아직 로딩 중임을 나타냅니다. 
+
+플레이스홀더는 `애플리케이션 경험을 향상`시키는 데 사용할 수 있습니다. 플레이스홀더는 html과 css로만 만들어졌기 때문에 만드는데 Javascript가 필요하지 않지만, 가시성을 전환하려면 일부 사용자 정의 Javascript가 필요합니다. 
+
+### 예제
+
+일반적인 카드 컴포넌트를 가져와 `“로딩 카드”`를 만들기 위해 적용된 자리 표시자를 사용해 다시 만듭니다. 크기와 비율은 둘 사이에 동일합니다. 
+
+```html
+<div class="card">
+  <img src="..." class="card-img-top" alt="...">
+
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+
+<div class="card" aria-hidden="true">
+  <img src="..." class="card-img-top" alt="...">
+  <div class="card-body">
+
+    <h5 class="card-title placeholder-glow">
+      <span class="placeholder col-6"></span>
+    </h5>
+
+    <p class="card-text placeholder-glow">
+      <span class="placeholder col-7"></span>
+      <span class="placeholder col-4"></span>
+      <span class="placeholder col-4"></span>
+      <span class="placeholder col-6"></span>
+      <span class="placeholder col-8"></span>
+    </p>
+
+    <a class="btn btn-primary disabled placeholder col-6" aria-disabled="true"></a>
+  </div>
+</div>
+```
+
+### 작동 방법
+
+`.placeholder 클래스`와 그리드 열 클래스(예 : .col-6)로 자리 표시자를 만들어 width를 설정합니다. 요소 내부의 텍스트를 바꾸거나 기존 컴포넌트에 수정자 클래스로 추가할 수 있습니다. 
+
+```html
+<p aria-hidden="true">
+  <span class="placeholder col-6"></span>
+</p>
+
+<a class="btn btn-primary disabled placeholder col-4" aria-disabled="true"></a>
+```
+
+### 너비
+
+여기에 `.bg-*`를 추가해 플레이스 홀더에 색상을 적용할 수도 있고, `.placeholder-{xs|sm|lg}`크기를 설정할 수도 있습니다.
+
+```html
+<span class="placeholder col-6"></span>
+<span class="placeholder w-75"></span>
+<span class="placeholder" style="width: 25%;"></span>
+```
+
+### 애니메이션
+
+`.placeholder-glow` 또는 `.placeholder-wave`를 사용해 플레이스홀더에 애니메이션을 적용해 무언가가 활성적으로 로드되고 있다는 인식을 더 잘 전달할 수 있습니다. 
+
+```html
+<p class="placeholder-glow">
+  <span class="placeholder col-12"></span>
+</p>
+
+<p class="placeholder-wave">
+  <span class="placeholder col-12"></span>
+</p>
+```
+  </div>
+</details>
+
+<details>
+  <summary> 6-18. Popovers </summary>
+  <div>
+  ### 개요
+
+- 팝오버는 서드파트 라이브러리인 `Popper`에 의존하고 있습니다. 부트스트랩 v5 이전이라면 `popper.min.js`를 추가하거나 v5 이후라면 `bootstrap.bundle.min.js`를 사용해야 합니다.
+- 팝오버는 퍼포먼스를 위해 `opt-in` 되어 있기 때문에, 스스로 초기화를 해야 합니다.
+- `길이가 0`인 title과 content 값은 팝오버를 표시하지 않습니다.
+- 더 복잡한 컴포넌트(input group, button groups 등)의 렌더링 문제를 피하기 위해 `container: ‘body’`를 지정해줘야 합니다.
+- `.disabled` 또는 `disabled` 요소의 팝오버는 그 바깥 요소에서 트리거 해야 합니다.
+
+### 예시
+
+- 팝오버 활성화
+    
+    팝오버를 사용하려면 사용 전에 팝오버를 `초기화`해줘야 합니다. 아래 코드르 <script> 태그 안에 추가해야 팝오버가 정상 작동 합니다. 
+    
+    ```jsx
+    document.querySelectorAll('[data-bs-toggle="popover"]')
+            .forEach(popover => {
+              new bootstrap.Popover(popover)
+    });
+    ```
+    
+
+- Live demo
+    
+    팝오버의 title은 `data-bs-title`로, 바디 내용은 `data-bs-content`로 지정할 수 있습니다. 
+      
+    ```jsx
+    <button type="button" class="btn btn-lg btn-danger" data-bs-toggle="popover" data-bs-title="Popover title" data-bs-content="And here's some amazing content. It's very engaging. Right?">Click to toggle popover</button>
+    ```
+    
+
+### 사방위
+
+팝오버는 `.data-bs-placement-{top|right|bottom|left}` 같이 4가지 옵션으로 표현할 수 있습니다. 
+
+```jsx
+<button type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Top popover">
+  Popover on top
+</button>
+
+<button type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="right" data-bs-content="Right popover">
+  Popover on right
+</button>
+
+<button type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="Bottom popover">
+  Popover on bottom
+</button>
+
+<button type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="Left popover">
+  Popover on left
+</button>
+```
+
+### 다음 클릭으로 닫기
+
+사용자가 다음 `토글 요소 이외의 요소`를 클릭했을 때 팝오버를 닫으려면 `focus 트리거`를 사용합니다. 
+
+<aside>
+⚠️ 브라우저나 플랫폼에 관계없이 제대로 다음 클릭으로 닫기를 위해서는 특정 html이 필요합니다. <button> 태그가 아닌 `<a> 태그`만 사용할 수 있으며, 반드시 `tabindex 속성`을 포함해야 합니다.
+
+</aside>
+
+```html
+<a tabindex="0" class="btn btn-lg btn-danger" role="button" data-bs-toggle="popover" data-bs-trigger="focus" data-bs-title="Dismissible popover" data-bs-content="And here's some amazing content. It's very engaging. Right?">Dismissible popover</a>
+```
+
+```jsx
+const popover = new bootstrap.Popover('.popover-dismiss', {
+  trigger: 'focus'
+})
+```
+
+### 비활성화 요소
+
+disabled 속성을 추가해 팝오버를 비활성화 할 수 있습니다. 
+
+```jsx
+<span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Disabled popover">
+  <button class="btn btn-primary" type="button" disabled>Disabled button</button>
+</span>
+``` 
+  </div>
+</details>
+
+<details>
+  <summary> 6-19. Popovers </summary>
+  <div>
+
+  ### 개요
+
+- 팝오버는 서드파트 라이브러리인 `Popper`에 의존하고 있습니다. 부트스트랩 v5 이전이라면 `popper.min.js`를 추가하거나 v5 이후라면 `bootstrap.bundle.min.js`를 사용해야 합니다.
+- 팝오버는 퍼포먼스를 위해 `opt-in` 되어 있기 때문에, 스스로 초기화를 해야 합니다.
+- `길이가 0`인 title과 content 값은 팝오버를 표시하지 않습니다.
+- 더 복잡한 컴포넌트(input group, button groups 등)의 렌더링 문제를 피하기 위해 `container: ‘body’`를 지정해줘야 합니다.
+- `.disabled` 또는 `disabled` 요소의 팝오버는 그 바깥 요소에서 트리거 해야 합니다.
+
+### 예시
+
+- 팝오버 활성화
+    
+    팝오버를 사용하려면 사용 전에 팝오버를 `초기화`해줘야 합니다. 아래 코드르 <script> 태그 안에 추가해야 팝오버가 정상 작동 합니다. 
+    
+    ```jsx
+    document.querySelectorAll('[data-bs-toggle="popover"]')
+            .forEach(popover => {
+              new bootstrap.Popover(popover)
+    });
+    ```
+    
+
+- Live demo
+    
+    팝오버의 title은 `data-bs-title`로, 바디 내용은 `data-bs-content`로 지정할 수 있습니다. 
+       
+    ```jsx
+    <button type="button" class="btn btn-lg btn-danger" data-bs-toggle="popover" data-bs-title="Popover title" data-bs-content="And here's some amazing content. It's very engaging. Right?">Click to toggle popover</button>
+    ```
+    
+
+### 사방위
+
+팝오버는 `.data-bs-placement-{top|right|bottom|left}` 같이 4가지 옵션으로 표현할 수 있습니다. 
+
+```jsx
+<button type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Top popover">
+  Popover on top
+</button>
+
+<button type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="right" data-bs-content="Right popover">
+  Popover on right
+</button>
+
+<button type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="Bottom popover">
+  Popover on bottom
+</button>
+
+<button type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="Left popover">
+  Popover on left
+</button>
+```
+
+### 다음 클릭으로 닫기
+
+사용자가 다음 `토글 요소 이외의 요소`를 클릭했을 때 팝오버를 닫으려면 `focus 트리거`를 사용합니다. 
+
+<aside>
+⚠️ 브라우저나 플랫폼에 관계없이 제대로 다음 클릭으로 닫기를 위해서는 특정 html이 필요합니다. <button> 태그가 아닌 `<a> 태그`만 사용할 수 있으며, 반드시 `tabindex 속성`을 포함해야 합니다.
+
+</aside>
+
+```html
+<a tabindex="0" class="btn btn-lg btn-danger" role="button" data-bs-toggle="popover" data-bs-trigger="focus" data-bs-title="Dismissible popover" data-bs-content="And here's some amazing content. It's very engaging. Right?">Dismissible popover</a>
+```
+
+```jsx
+const popover = new bootstrap.Popover('.popover-dismiss', {
+  trigger: 'focus'
+})
+```
+
+### 비활성화 요소
+
+disabled 속성을 추가해 팝오버를 비활성화 할 수 있습니다. 
+
+```jsx
+<span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Disabled popover">
+  <button class="btn btn-primary" type="button" disabled>Disabled button</button>
+</span>
+```
+    
+  </div>
+</details>
+
+<details>
+  <summary> 6-20. Progress </summary>
+  <div>
+
+  ### 작동원리
+
+- `.progress`를 `wrapper`로 사용해 프로그레스 바에서 최대값을 가리킵니다.
+- `.progress wrapper`는 `role="progressbar"`와 `aria 속성`(aria-label, aria-labelledby 등)을 필요로 합니다.
+- 시각적인 바와 라벨을 위해 `inner .progress-bar`를 사용합니다.
+- .`progress-bar`는 인라인 스타일, 유틸리티 클래스 혹은 custom CSS을 사용해 가로를 설정할 수 있습니다.
+- 부트스트랩은 `multiple/stacked` 프로그레스 바를 만들기 위해 `.progress-stacked 클래스`를 지원합니다.
+
+### 예시
+
+```html
+<div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+  <div class="progress-bar" style="width: 0%"></div>
+</div>
+
+<div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+  <div class="progress-bar" style="width: 25%"></div>
+</div>
+
+<div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+  <div class="progress-bar" style="width: 50%"></div>
+</div>
+
+<div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+  <div class="progress-bar" style="width: 75%"></div>
+</div>
+
+<div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+  <div class="progress-bar" style="width: 100%"></div>
+</div>
+```
+
+### Bar sizing
+
+- width
+    
+    .progress-bar에 width를 설정할 수 있습니다. 
+    
+    ```html
+    <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+      <div class="progress-bar w-75"></div>
+    </div>
+    ```
+    
+- height
+    
+    `.progress`에는 `height 값`만 설정되어 있기 때문에, 이 값을 변경하면 내부 `.progress-bar`는 그에 따라 높이가 변경됩니다. 
+    
+    ```html
+    <!--progress bar가 progress에 감싸기 때문에 같이 작아짐-->
+    <!--html은 보여주기만 함-->
+    <div class="progress" role="progressbar" aria-label="Example 1px high" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="height: 1px">
+      <div class="progress-bar" style="width: 25%"></div>
+    </div>
+    
+    <div class="progress" role="progressbar" aria-label="Example 20px high" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="height: 20px">
+      <div class="progress-bar" style="width: 25%"></div>
+    </div>
+    ```
+    
+
+### Label
+
+프로그레스 바에 라벨은 .progress-bar 안에 텍스트를 배치하면 됩니다. 
+
+```html
+<div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+  <!--div 태그 안에 있는 텍스트 값을 변경하면 됩니다-->
+	<div class="progress-bar" style="width: 25%">25%</div>
+</div>
+```
+
+만약 라벨 내부 내용이 프로그레스 바 길이보다 길다면, 이는 잘리게 됩니다. 
+
+`.progress-bar`는 `overflow: hidden`으로 설정되어 있기 때문입니다. 
+
+```html
+<div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">
+      <div class="progress-bar overflow-visible text-dark" style="width: 10%">Long label text for the progress bar, set to a dark colorLong label text for the progress bar, set to a dark colorLong label text for the progress bar, set to a dark colorLong label text for the progress bar, set to a dark colorLong label text for the progress bar, set to a dark colorLong label text for the progress bar, set to a dark color</div>
+</div>
+```
+
+### Background color
+
+.progress-bar에 `.bg-success`를 추가하면 프로그레스바의 색상을 변경할 수 있습니다. 
+
+```html
+<div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+  <div class="progress-bar bg-success" style="width: 25%"></div>
+</div>
+<div class="progress" role="progressbar" aria-label="Info example" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+  <div class="progress-bar bg-info" style="width: 50%"></div>
+</div>
+<div class="progress" role="progressbar" aria-label="Warning example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+  <div class="progress-bar bg-warning" style="width: 75%"></div>
+</div>
+<div class="progress" role="progressbar" aria-label="Danger example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+  <div class="progress-bar bg-danger" style="width: 100%"></div>
+</div>
+```
+
+### Multiple
+
+`.progress-stacked`를 사용해 여러개의 프로그레스 바를 하나에 표현할 수 있습니다. 
+
+```html
+<div class="progress-stacked">
+
+  <div class="progress" role="progressbar" aria-label="Segment one" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100" style="width: 15%">
+    <div class="progress-bar"></div>
+  </div>
+
+  <div class="progress" role="progressbar" aria-label="Segment two" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%">
+    <div class="progress-bar bg-success"></div>
+  </div>
+
+  <div class="progress" role="progressbar" aria-label="Segment three" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+    <div class="progress-bar bg-info"></div>
+  </div>
+
+</div>
+```
+
+### Stripe
+
+`.progress-bar`에 `.progress-bar-striped`를 추가해 프로그레스 바의 배경색에 스트라이프를 적용할 수 있습니다. 
+
+```html
+<div class="progress" role="progressbar" aria-label="Default striped example" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">
+  <div class="progress-bar progress-bar-striped" style="width: 10%"></div>
+</div>
+<div class="progress" role="progressbar" aria-label="Success striped example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+  <div class="progress-bar progress-bar-striped bg-success" style="width: 25%"></div>
+</div>
+<div class="progress" role="progressbar" aria-label="Info striped example" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+  <div class="progress-bar progress-bar-striped bg-info" style="width: 50%"></div>
+</div>
+<div class="progress" role="progressbar" aria-label="Warning striped example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+  <div class="progress-bar progress-bar-striped bg-warning" style="width: 75%"></div>
+</div>
+<div class="progress" role="progressbar" aria-label="Danger striped example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+  <div class="progress-bar progress-bar-striped bg-danger" style="width: 100%"></div>
+</div>
+```
+
+- 애니메이션 스트라이프
+    
+    .progress-bar에 .progress-bar-animated를 추가하면 css3 애니메이션으로 줄무늬를 오른쪽에서 왼쪽으로 애니메이션 시킬 수 있습니다. 
+    
+    ```html
+    <div class="progress" role="progressbar" aria-label="Animated striped example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+      <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 75%"></div>
+    </div>
+    ```
     
   </div>
 </details>
