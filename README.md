@@ -5516,95 +5516,9 @@ dropdown-menu-end
   </div>
 </details>
 
+
 <details>
   <summary> 6-18. Popovers </summary>
-  <div>
-  ### 개요
-
-- 팝오버는 서드파트 라이브러리인 `Popper`에 의존하고 있습니다. 부트스트랩 v5 이전이라면 `popper.min.js`를 추가하거나 v5 이후라면 `bootstrap.bundle.min.js`를 사용해야 합니다.
-- 팝오버는 퍼포먼스를 위해 `opt-in` 되어 있기 때문에, 스스로 초기화를 해야 합니다.
-- `길이가 0`인 title과 content 값은 팝오버를 표시하지 않습니다.
-- 더 복잡한 컴포넌트(input group, button groups 등)의 렌더링 문제를 피하기 위해 `container: ‘body’`를 지정해줘야 합니다.
-- `.disabled` 또는 `disabled` 요소의 팝오버는 그 바깥 요소에서 트리거 해야 합니다.
-
-### 예시
-
-- 팝오버 활성화
-    
-    팝오버를 사용하려면 사용 전에 팝오버를 `초기화`해줘야 합니다. 아래 코드르 <script> 태그 안에 추가해야 팝오버가 정상 작동 합니다. 
-    
-    ```jsx
-    document.querySelectorAll('[data-bs-toggle="popover"]')
-            .forEach(popover => {
-              new bootstrap.Popover(popover)
-    });
-    ```
-    
-
-- Live demo
-    
-    팝오버의 title은 `data-bs-title`로, 바디 내용은 `data-bs-content`로 지정할 수 있습니다. 
-      
-    ```jsx
-    <button type="button" class="btn btn-lg btn-danger" data-bs-toggle="popover" data-bs-title="Popover title" data-bs-content="And here's some amazing content. It's very engaging. Right?">Click to toggle popover</button>
-    ```
-    
-
-### 사방위
-
-팝오버는 `.data-bs-placement-{top|right|bottom|left}` 같이 4가지 옵션으로 표현할 수 있습니다. 
-
-```jsx
-<button type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Top popover">
-  Popover on top
-</button>
-
-<button type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="right" data-bs-content="Right popover">
-  Popover on right
-</button>
-
-<button type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="Bottom popover">
-  Popover on bottom
-</button>
-
-<button type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="Left popover">
-  Popover on left
-</button>
-```
-
-### 다음 클릭으로 닫기
-
-사용자가 다음 `토글 요소 이외의 요소`를 클릭했을 때 팝오버를 닫으려면 `focus 트리거`를 사용합니다. 
-
-<aside>
-⚠️ 브라우저나 플랫폼에 관계없이 제대로 다음 클릭으로 닫기를 위해서는 특정 html이 필요합니다. <button> 태그가 아닌 `<a> 태그`만 사용할 수 있으며, 반드시 `tabindex 속성`을 포함해야 합니다.
-
-</aside>
-
-```html
-<a tabindex="0" class="btn btn-lg btn-danger" role="button" data-bs-toggle="popover" data-bs-trigger="focus" data-bs-title="Dismissible popover" data-bs-content="And here's some amazing content. It's very engaging. Right?">Dismissible popover</a>
-```
-
-```jsx
-const popover = new bootstrap.Popover('.popover-dismiss', {
-  trigger: 'focus'
-})
-```
-
-### 비활성화 요소
-
-disabled 속성을 추가해 팝오버를 비활성화 할 수 있습니다. 
-
-```jsx
-<span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Disabled popover">
-  <button class="btn btn-primary" type="button" disabled>Disabled button</button>
-</span>
-``` 
-  </div>
-</details>
-
-<details>
-  <summary> 6-19. Popovers </summary>
   <div>
 
   ### 개요
@@ -5693,7 +5607,7 @@ disabled 속성을 추가해 팝오버를 비활성화 할 수 있습니다.
 </details>
 
 <details>
-  <summary> 6-20. Progress </summary>
+  <summary> 6-19. Progress </summary>
   <div>
 
   ### 작동원리
@@ -5850,11 +5764,665 @@ disabled 속성을 추가해 팝오버를 비활성화 할 수 있습니다.
       <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 75%"></div>
     </div>
     ```
-    
   </div>
 </details>
 
 
+<details>
+  <summary> 6-20. Scroll Spy </summary>
+  <div>
+
+  스크롤스파이는 `스크롤 위치`에 따라 bootstrap 내비게이션 또는 목록 그룹 `컴포넌트를 자동으로 갱신`해 뷰포트 내에서 현재 `어떤 링크가 활성화 되었는지`를 나타냅니다. 
+
+### 예시
+
+- Navbar
+    - 코드
+        
+        ```html
+        <nav id="navbar-example2" class="navbar bg-body-tertiary px-3 mb-3">
+          <a class="navbar-brand" href="#">Navbar</a>
+        
+          <ul class="nav nav-pills">
+            <li class="nav-item">
+              <a class="nav-link" href="#scrollspyHeading1">First</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#scrollspyHeading2">Second</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Dropdown</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#scrollspyHeading3">Third</a></li>
+                <li><a class="dropdown-item" href="#scrollspyHeading4">Fourth</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#scrollspyHeading5">Fifth</a></li>
+              </ul>
+            </li>
+          </ul>
+        
+        </nav>
+        
+        <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-body-tertiary p-3 rounded-2" tabindex="0">
+          <h4 id="scrollspyHeading1">First heading</h4>
+          <p>...</p>
+          <h4 id="scrollspyHeading2">Second heading</h4>
+          <p>...</p>
+          <h4 id="scrollspyHeading3">Third heading</h4>
+          <p>...</p>
+          <h4 id="scrollspyHeading4">Fourth heading</h4>
+          <p>...</p>
+          <h4 id="scrollspyHeading5">Fifth heading</h4>
+          <p>...</p>
+        </div>
+        ```
+        
+- Nested Nav
+    - 코드
+        
+        ```html
+        <div class="row">
+          <div class="col-4">
+            <nav id="navbar-example3" class="h-100 flex-column align-items-stretch pe-4 border-end">
+              <nav class="nav nav-pills flex-column">
+                <a class="nav-link" href="#item-1">Item 1</a>
+                <nav class="nav nav-pills flex-column">
+                  <a class="nav-link ms-3 my-1" href="#item-1-1">Item 1-1</a>
+                  <a class="nav-link ms-3 my-1" href="#item-1-2">Item 1-2</a>
+                </nav>
+                <a class="nav-link" href="#item-2">Item 2</a>
+                <a class="nav-link" href="#item-3">Item 3</a>
+                <nav class="nav nav-pills flex-column">
+                  <a class="nav-link ms-3 my-1" href="#item-3-1">Item 3-1</a>
+                  <a class="nav-link ms-3 my-1" href="#item-3-2">Item 3-2</a>
+                </nav>
+              </nav>
+            </nav>
+          </div>
+        
+          <div class="col-8">
+            <div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-smooth-scroll="true" class="scrollspy-example-2" tabindex="0">
+              <div id="item-1">
+                <h4>Item 1</h4>
+                <p>...</p>
+              </div>
+              <div id="item-1-1">
+                <h5>Item 1-1</h5>
+                <p>...</p>
+              </div>
+              <div id="item-1-2">
+                <h5>Item 1-2</h5>
+                <p>...</p>
+              </div>
+              <div id="item-2">
+                <h4>Item 2</h4>
+                <p>...</p>
+              </div>
+              <div id="item-3">
+                <h4>Item 3</h4>
+                <p>...</p>
+              </div>
+              <div id="item-3-1">
+                <h5>Item 3-1</h5>
+                <p>...</p>
+              </div>
+              <div id="item-3-2">
+                <h5>Item 3-2</h5>
+                <p>...</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        ```
+        
+- List group
+    - 코드
+        
+        ```html
+        <div class="row">
+          <div class="col-4">
+            <div id="list-example" class="list-group">
+              <a class="list-group-item list-group-item-action" href="#list-item-1">Item 1</a>
+              <a class="list-group-item list-group-item-action" href="#list-item-2">Item 2</a>
+              <a class="list-group-item list-group-item-action" href="#list-item-3">Item 3</a>
+              <a class="list-group-item list-group-item-action" href="#list-item-4">Item 4</a>
+            </div>
+          </div>
+          <div class="col-8">
+            <div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-smooth-scroll="true" class="scrollspy-example" tabindex="0">
+              <h4 id="list-item-1">Item 1</h4>
+              <p>...</p>
+              <h4 id="list-item-2">Item 2</h4>
+              <p>...</p>
+              <h4 id="list-item-3">Item 3</h4>
+              <p>...</p>
+              <h4 id="list-item-4">Item 4</h4>
+              <p>...</p>
+            </div>
+          </div>
+        </div>
+        ```
+        
+- Simple anchors
+    - 코드
+        
+        ```html
+        <div class="row">
+          <div class="col-4">
+            <div id="simple-list-example" class="d-flex flex-column gap-2 simple-list-example-scrollspy text-center">
+              <a class="p-1 rounded" href="#simple-list-item-1">Item 1</a>
+              <a class="p-1 rounded" href="#simple-list-item-2">Item 2</a>
+              <a class="p-1 rounded" href="#simple-list-item-3">Item 3</a>
+              <a class="p-1 rounded" href="#simple-list-item-4">Item 4</a>
+              <a class="p-1 rounded" href="#simple-list-item-5">Item 5</a>
+            </div>
+          </div>
+          <div class="col-8">
+            <div data-bs-spy="scroll" data-bs-target="#simple-list-example" data-bs-offset="0" data-bs-smooth-scroll="true" class="scrollspy-example" tabindex="0">
+              <h4 id="simple-list-item-1">Item 1</h4>
+              <p>...</p>
+              <h4 id="simple-list-item-2">Item 2</h4>
+              <p>...</p>
+              <h4 id="simple-list-item-3">Item 3</h4>
+              <p>...</p>
+              <h4 id="simple-list-item-4">Item 4</h4>
+              <p>...</p>
+              <h4 id="simple-list-item-5">Item 5</h4>
+              <p>...</p>
+            </div>
+          </div>
+        </div>
+        ```
+        
+
+### 사용방법
+
+- 데이터 속성 사용하기
+    
+    `topbar 내비게이션`에 스크롤 스파이 동작을 간단하게 추가하려면, 스크롤 스파이를 적용하고 싶은 요소에 `data-bs-spy=”scroll”`을 추가합니다. (가장 전형적으로는 <body>에 합니다)그 다음에 `data-bs-target` 속성에 임의의 `Bootstrap .nav 컴포넌트`의 `부모 요소의 id` 또는 클래스를 추가합니다. 
+    
+    - 코드
+        
+        ```html
+        <body data-bs-spy="scroll" data-bs-target="#navbar-example">
+          ...
+        	<!--부모요소-->
+          <div id="navbar-example">
+            <ul class="nav nav-tabs" role="tablist">
+              ...
+            </ul>
+          </div>
+          ...
+        </body>
+        ```
+  </div>
+</details>
+
+<details>
+  <summary> 6-21. Spinners </summary>
+  <div>
+
+  html, css, javascript를 사용하지 않고 완전히 빌드된 `bootstrap 스피너`를 사용해 컴포넌트나 페이지의 로딩 상태를 표시할 수 있습니다. 
+
+### 소개
+
+Bootstrap의 스피너는 프로젝트의 로딩 상태를 표시하기 위해 사용할 수 있습니다. 이것은 html 과 css로 만들어져 있기 때문에 Javascript가 필요 없습니다. 그러나 가시성을 바꾸기 위해선 몇가지의 사용자 정의 javascript가 필요합니다. 
+
+### Border 스피너 → gif로 한방에 할 수 있음
+
+border 스피너를 사용해 가벼운 로딩 인디게이터를 만들 수 있습니다. 빙글빙글 돌아가는 형태 입니다. 
+
+스피너의 색상 변경은 border-color에 currentColor를 사용해서 적용할 수 있습니다. 
+
+```html
+<div class="spinner-border" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
+
+<!--스피너 색상 변경-->
+<div class="spinner-border text-primary" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
+```
+
+### Grow 스피너
+
+Border 스피너가 싫다면 grow 스피너를 사용할 수 있습니다. 기술적으로는 회전하지 않고, grow를 반복 시키고 있습니다. 
+
+```html
+<div class="spinner-grow" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
+
+<!--grow 스피너 색상 변경-->
+<div class="spinner-grow text-primary" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
+```
+
+### 정렬
+
+bootstrap 스피너는 `rem`, `currentColor`, `display : inline-flex`로 빌드되어 있습니다. 이것으로 `크기`, `색`, `배치`를 빠르게 변경할 수 있습니다. 
+
+- 마진
+    
+    .m-5와 같이 margin utilities를 사용하면 간단하게 간격을 둘 수 있습니다. 
+    
+    ```html
+    <div class="spinner-border m-5" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    ```
+    
+- 배치
+    
+    flexbox utilities, float utilites, text alignment 유틸리티를 사용해 어떤 상황에도 스피너를 `원하는 위치`에 정확히 배치시킬 수 있습니다. 
+    
+    - 유동
+        
+        ```html
+        <div class="d-flex justify-content-center">
+          <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+        
+        <div class="d-flex align-items-center">
+          <strong role="status">Loading...</strong>
+          <div class="spinner-border ms-auto" aria-hidden="true"></div>
+        </div>
+        ```
+        
+    - 플로트
+        
+        ```html
+        <div class="clearfix">
+          <div class="spinner-border float-end" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+        ```
+        
+    - 텍스트 정렬
+        
+        ```html
+        <div class="text-center">
+          <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+        ```
+        
+
+### 크기
+
+`.spinner-border-{sm | md …}`나 `사용자 크기 정의`를 추가해 스피너의 크기를 조절할 수 있습니다. 
+
+```html
+<!--spinner-border-sm 크기-->
+<div class="spinner-border spinner-border-sm" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
+<div class="spinner-grow spinner-grow-sm" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
+
+<!--사용자 크기 정의-->
+<div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
+<div class="spinner-grow" style="width: 3rem; height: 3rem;" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
+```
+
+### 버튼
+
+버튼 중 스피너를 사용해 액션이 현재 처리 중이거나 실행 중임을 나타냅니다. 
+
+```html
+<button class="btn btn-primary" type="button" disabled>
+  <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+  <span class="visually-hidden" role="status">Loading...</span>
+</button>
+
+<button class="btn btn-primary" type="button" disabled>
+  <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+  <span role="status">Loading...</span>
+</button>
+```
+  </div>
+</details>
+
+<details>
+  <summary> 6-22. Toasts </summary>
+  <div>
+
+토스트는 모바일 및 데스크톱 os에서 보급된 `푸시 알림`을 모방해 설계된 `가벼운 알림`창입니다. 
+
+### 개요
+
+토스트 플러그인을 사용할 때 알아두어야 하는 것으로는 다음과 같습니다. 
+
+- 토스트는 퍼포먼스 상의 이유로 `opt-in` 방식으로 되어있기 때문에 스스로 초기화해야 합니다. (적용할 것을 직접 선택해야함. 디폴트가 선택하지 않음)
+- 토스트는 `autohide : false` 를 지정하지 않으면 자동으로 숨겨집니다.
+
+### 예시
+
+- 기본
+    
+    토스트의 확장성과 예측 가능성을 높이기 위해 header와 body의 사용을 권장합니다. 
+    
+    `토스트 콘텐츠를 포함하는 요소가 최소 하나`는 있어야 하고, `닫기 버튼`은 강력히 권장합니다. 
+    
+    - 코드
+        
+        ```html
+        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        
+          <div class="toast-header">
+            <img src="..." class="rounded me-2" alt="...">
+            <strong class="me-auto">Bootstrap</strong>
+            <small>11 mins ago</small>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+          </div>
+        
+          <div class="toast-body">
+            Hello, world! This is a toast message.
+          </div>
+        
+        </div>
+        
+        <!--반투명 토스트-->
+        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+          <div class="toast-header">
+            <img src="..." class="rounded me-2" alt="...">
+            <strong class="me-auto">Bootstrap</strong>
+            <small class="text-body-secondary">11 mins ago</small>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+          </div>
+          <div class="toast-body">
+            Hello, world! This is a toast message.
+          </div>
+        </div>
+        ```
+        
+    
+- 실시간
+    
+    아래 버튼을 클리가면 기본적으로 숨겨져 있는 알림을 표시합니다.
+       
+    ```html
+    <button type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button>
+    
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+      <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+          <img src="..." class="rounded me-2" alt="...">
+          <strong class="me-auto">Bootstrap</strong>
+          <small>11 mins ago</small>
+          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+          Hello, world! This is a toast message.
+        </div>
+      </div>
+    </div>
+    ```
+    
+    - 자바스크립트
+        
+        다음 자바스크립트를 사용해 `라이브 테스트 데모`를 트리거 할 수 있습니다. 
+        
+        아래 코드를 <script> 태그에 같이 추가해야 라이브 토스트가 정삭 동작 합니다. 
+        
+        ```java
+        const toastTrigger = document.getElementById('liveToastBtn')
+        const toastLiveExample = document.getElementById('liveToast')
+        
+        if (toastTrigger) {
+          const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
+          toastTrigger.addEventListener('click', () => {
+            toastBootstrap.show()
+          })
+        }
+        ```
+        
+    
+- 중첩
+    
+    토스트를 toast container로 감싸면 여러개 사용할 수 있습니다. 
+     
+    - 코드
+        
+        ```java
+        <div class="toast-container position-static">
+          <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+              <img src="..." class="rounded me-2" alt="...">
+              <strong class="me-auto">Bootstrap</strong>
+              <small class="text-body-secondary">just now</small>
+              <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+              See? Just like this.
+            </div>
+          </div>
+        
+          <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+              <img src="..." class="rounded me-2" alt="...">
+              <strong class="me-auto">Bootstrap</strong>
+              <small class="text-body-secondary">2 seconds ago</small>
+              <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+              Heads up, toasts will stack automatically
+            </div>
+          </div>
+        </div>
+        ```
+        
+
+- 사용자 지정 콘텐츠
+    
+    서브 컴포넌트를 삭제하거나, utilities로 조정하거나, 독자적인 마크업을 추가해 `토스트를 재정의` 할 수 있습니다. 
+    
+    아래 예시는 `.toast-header`를 삭제하고 Bootstrap Icons를 사용해 사용자 정의 숨김 아이콘을 추가하고 flexbox utilities로 레이아웃을 조정해 보다 간단한 토스트를 만들고 있습니다. 
+      
+    ```html
+    <div class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
+    
+      <div class="d-flex">
+        <div class="toast-body">
+          Hello, world! This is a toast message.
+        </div>
+        <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+    
+    </div>
+    
+    <!--토스트에 추가적인 컨트롤이나 컴포넌트 추가-->
+    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-body">
+        Hello, world! This is a toast message.
+    
+        <div class="mt-2 pt-2 border-top">
+          <button type="button" class="btn btn-primary btn-sm">Take action</button>
+          <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="toast">Close</button>
+        </div>
+    
+      </div>
+    </div>
+    ```
+    
+
+- 색상 스키마
+    
+    `.bg-{color}` 와 `.btn-close-{color}`를 사용해 토스트와 닫기 버튼에 색을 입힐 수 있습니다. 
+    
+    선명한 모서리를 모여주기 위해 .border-0을 추가해 기본으로 제공한 모서리를 삭제하고 있습니다. 
+      
+    ```html
+    <div class="toast align-items-center text-bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body">
+          Hello, world! This is a toast message.
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+    </div>
+    ```
+    
+
+### 배치
+
+필요에 따라 사용자 지정 css로 토스트를 배치시킵니다. 
+
+`우측 상단`과 `상단 중앙`은 `알림용`으로 사용되는 경우가 많습니다. 
+
+- 기본
+       
+    - 코드
+        
+        ```html
+        <form>
+          <div class="mb-3">
+            <label for="selectToastPlacement">Toast placement</label>
+            <select class="form-select mt-2" id="selectToastPlacement">
+              <option value="" selected>Select a position...</option>
+              <option value="top-0 start-0">Top left</option>
+              <option value="top-0 start-50 translate-middle-x">Top center</option>
+              <option value="top-0 end-0">Top right</option>
+              <option value="top-50 start-0 translate-middle-y">Middle left</option>
+              <option value="top-50 start-50 translate-middle">Middle center</option>
+              <option value="top-50 end-0 translate-middle-y">Middle right</option>
+              <option value="bottom-0 start-0">Bottom left</option>
+              <option value="bottom-0 start-50 translate-middle-x">Bottom center</option>
+              <option value="bottom-0 end-0">Bottom right</option>
+            </select>
+          </div>
+        </form>
+        
+        <div aria-live="polite" aria-atomic="true" class="bg-body-secondary position-relative bd-example-toasts rounded-3">
+          <div class="toast-container p-3" id="toastPlacement">
+            <div class="toast">
+              <div class="toast-header">
+                <img src="..." class="rounded me-2" alt="...">
+                <strong class="me-auto">Bootstrap</strong>
+                <small>11 mins ago</small>
+              </div>
+              <div class="toast-body">
+                Hello, world! This is a toast message.
+              </div>
+            </div>
+          </div>
+        </div>
+        ```
+        
+
+- 알림이 많은 경우
+    
+    알림이 많을 때에는 쉽게 쌓이게 하도록 wrapping 요소의 사용을 검토해 주세요. 
+    
+    - 코드
+        
+        ```html
+        <div aria-live="polite" aria-atomic="true" class="position-relative">
+          <!-- Position it: -->
+          <!-- - `.toast-container` for spacing between toasts -->
+          <!-- - `top-0` & `end-0` to position the toasts in the upper right corner -->
+          <!-- - `.p-3` to prevent the toasts from sticking to the edge of the container  -->
+          <div class="toast-container top-0 end-0 p-3">
+        
+            <!-- Then put toasts within -->
+            <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+              <div class="toast-header">
+                <img src="..." class="rounded me-2" alt="...">
+                <strong class="me-auto">Bootstrap</strong>
+                <small class="text-body-secondary">just now</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+              </div>
+              <div class="toast-body">
+                See? Just like this.
+              </div>
+            </div>
+        
+            <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+              <div class="toast-header">
+                <img src="..." class="rounded me-2" alt="...">
+                <strong class="me-auto">Bootstrap</strong>
+                <small class="text-body-secondary">2 seconds ago</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+              </div>
+              <div class="toast-body">
+                Heads up, toasts will stack automatically
+              </div>
+            </div>
+          </div>
+        </div>
+        ```
+        
+
+- 토스트 수평/수직 정렬
+        
+    ```html
+    <!-- Flexbox container for aligning the toasts -->
+    <div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center w-100">
+    
+      <!-- Then put toasts within -->
+      <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+          <img src="..." class="rounded me-2" alt="...">
+          <strong class="me-auto">Bootstrap</strong>
+          <small>11 mins ago</small>
+          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+          Hello, world! This is a toast message.
+        </div>
+      </div>
+    </div>
+    ```
+  </div>
+</details>
+
+<details>
+  <summary> 6-23. Tooltips </summary>
+  <div>
+  ### 개요
+
+- 툴팁의 배치는 서드파티 라이브러리인 [Popper](https://popper.js.org/)에 의존하고 있습니다. `bootstrap.js` 앞에 [popper.min.js](https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js)를 사용하거나, 팝오버가 포함되어 있는 `bootstrap.bundle.min.js`를 사용해야 합니다.
+- 툴팁은 퍼포먼스를 위해 `opt-in` 되어 있기 때문에 **스스로 초기화를 해야 합니다.**
+- `길이가 0`의 타이틀을 가진 툴팁은 표시되지 않습니다.
+- 더 복잡한 컴포넌트(input group, button groups 등)의 렌더링 문제를 피하기 위해 `container: 'body'`를 지정해 주십시오.
+- 숨겨진 요소에서 툴팁을 트리거 해도 제 기능을 하지 않습니다.
+- `.disabled`나 `disabled` 요소의 툴팁은 그 위(바깥) 요소에서 트리거 해야 합니다.
+- 여러 라인에 걸쳐 있는 하이퍼링크에서 트리거된 툴팁은 중앙에 배치됩니다. 이 동작을 피하기 위해서는 `<a>`에 `white-space: nowrap;`을 사용해 주십시오.
+
+### 예시
+
+- 툴팁 활성화
+    
+    팝오버를 사용하려면 그 전에 팝오버를 초기화 해줘야 합니다. 페이지 상의 모든 툴팁을 초기화 하는 방법 중 하나는 아래처럼 data-bs-toggle 속성으로 선택하는 것입니다.
+    
+    ```jsx
+    document.querySelectorAll('[data-bs-toggle="tooltip"]')
+            .forEach(tooltip => {
+              new bootstrap.Tooltip(tooltip)
+    })
+    ```
+    
+
+### 링크의 툴팁
+
+아래 링크에 커서를 맞추면 툴팁이 나타나는 것을 확인할 수 있습니다.
+
+```html
+<p class="muted">Placeholder text to demonstrate some <a href="#" data-bs-toggle="tooltip" data-bs-title="Default tooltip">inline links</a> with tooltips. This is now just filler, no killer. Content placed here just to mimic the presence of <a href="#" data-bs-toggle="tooltip" data-bs-title="Another tooltip">real text</a>. And all that just to give you an idea of how tooltips would look when used in real-world situations. So hopefully you've now seen how <a href="#" data-bs-toggle="tooltip" data-bs-title="Another one here too">these tooltips on links</a> can work in practice, once you use them on <a href="#" data-bs-toggle="tooltip" data-bs-title="The last tip!">your own</a> site or project.</p>
+```
+  </div>
+</details>
 
 
 
